@@ -7,337 +7,566 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  
+  <style>
+    :root {
+      --ivory: #fffbf2;
+      --cream: #f8f1dc;
+      --pale-gold: #f6eed0;
+      --soft-gold: #e8d89c;
+      --gold-light: #dcc860;
+      --gold: #d4b44c;
+      --gold-rich: #c49f2e;
+      --gold-dark: #9a7c20;
+      --gold-deep: #6b5715;
+      --charcoal: #2c2a24;
+      --warm-brown: #4e4938;
+      --text-main: #2c2a24;
+      --text-soft: #66604e;
+      --border-gold: #d4b44c;
+      --shadow-gold-sm: 0 4px 15px rgba(196, 159, 46, 0.08);
+      --shadow-gold-md: 0 8px 25px rgba(196, 159, 46, 0.14);
+      --shadow-gold-lg: 0 12px 40px rgba(196, 159, 46, 0.18);
+    }
 
-  <!-- Decorative Elements -->
-  <div class="gold-glow top-left"></div>
-  <div class="gold-glow bottom-right"></div>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ivory);
+      color: var(--text-main);
+      line-height: 1.7;
+      position: relative;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    .italic { font-style: italic; }
+    .gold-text { color: var(--gold-rich); }
 
-  <!-- Progress Bar -->
-  <div class="progress-wrap"><div class="progress-bar" id="scrollProgress"></div></div>
+    /* Decorative Gold Glows */
+    .gold-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 180, 76, 0.08), transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .gold-glow.top-left { top: -150px; left: -150px; }
+    .gold-glow.bottom-right { bottom: -150px; right: -150px; }
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="#hero" class="brand">
-        <span class="brand-elegant">Étoffe</span>
-        <span class="brand-gold">Éclairé</span>
-      </a>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#about" class="nav-link"><span>About</span></a></li>
-        <li><a href="#channel" class="nav-link"><span>Channel</span></a></li>
-        <li><a href="#fabrics" class="nav-link"><span>Fabrics</span></a></li>
-        <li><a href="#care" class="nav-link"><span>Care</span></a></li>
-        <li><a href="#faq" class="nav-link"><span>FAQ</span></a></li>
-      </ul>
-      <div class="menu-toggle" id="menuToggle">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </nav>
+    /* Scroll Reveal Animation */
+    .reveal-element {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-element.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <div class="hero-frame reveal-element">
-        <div class="ornament-top">✦ ✦ ✦</div>
-        <p class="pretitle italic">"Thread of Knowledge, Style for Life"</p>
-        <h1>Understand Your <span class="gold-script">Fabric</span><br>Transform Your <span class="gold-script">Wardrobe</span></h1>
-        <div class="divider-elegant">
-          <span class="line"></span>
-          <span class="dot">◈</span>
-          <span class="line"></span>
-        </div>
-        <p class="hero-subtext">Elevate your style • Protect your investment • Shop with confidence</p>
-        <div class="hero-buttons">
-          <a href="#about" class="btn primary">
-            <span class="btn-text">Our Story</span>
-            <span class="btn-line"></span>
-          </a>
-          <a href="#fabrics" class="btn secondary">
-            <span class="btn-text">Explore Fabrics</span>
-          </a>
-        </div>
-        <div class="ornament-bottom">✧ ✦ ✧</div>
-      </div>
-    </div>
-  </section>
+    /* Progress Bar */
+    .progress-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--pale-gold);
+      z-index: 999;
+    }
+    .progress-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold-rich), var(--gold));
+      width: 0%;
+      transition: width 0.1s ease;
+    }
 
-  <!-- About — Updated Version -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="grid-row">
-        <div class="col reveal-element">
-          <div class="section-heading-block">
-            <span class="tag">About Us</span>
-            <h2>Our <span>Story</span></h2>
-            <div class="gold-line"></div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card-box elegant reveal-element">
-            <div class="corner-decoration top-right"></div>
-            <div class="corner-decoration bottom-left"></div>
-            
-            <h3 class="about-heading">Purpose of Our Channel</h3>
-            <p class="drop-cap">We believe that <strong class="gold-text">understanding what you wear</strong> is the first step to loving what you own. Our channel exists to make fabric knowledge simple, practical, and accessible for everyone — because great style shouldn't be a luxury.</p>
-            
-            <div class="card-divider">❦</div>
-            
-            <h3 class="about-heading">The Origin</h3>
-            <p>The name <strong class="gold-text">Étoffe Éclairé</strong> comes from <em>French</em> — the language known worldwide for elegance, fashion, and timeless style. France has long been at the heart of the fashion industry, and we wanted to reflect that same sophistication in everything we share.</p>
-            
-            <p>But there's more — look closely at the initials: <strong class="gold-text">EC</strong>. It stands for <em>"Easy Chic."</em> Our goal is exactly that: to give you <strong>easy tips and tricks</strong> that help you understand fabrics and make your everyday style look effortlessly neat and polished.</p>
-            
-            <p class="signature-line italic">Knowledge isn't a luxury — it's the foundation of truly timeless style.</p>
-            
-            <div class="card-divider">❦</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 251, 242, 0.95);
+      border-bottom: 2px solid var(--soft-gold);
+      z-index: 100;
+      backdrop-filter: blur(6px);
+    }
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+      font-weight: 700;
+    }
+    .brand-elegant { color: var(--charcoal); }
+    .brand-gold { color: var(--gold-rich); }
+    .nav-menu { display: flex; gap: 35px; }
+    .nav-link {
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--warm-brown);
+      font-weight: 600;
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: var(--gold-rich); }
+    .nav-link:hover::after { width: 100%; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .menu-toggle span {
+      width: 26px;
+      height: 2px;
+      background: var(--gold-rich);
+      border-radius: 1px;
+      transition: 0.2s;
+    }
 
-  <!-- Channel -->
-  <section class="section gold-accent" id="channel">
-    <div class="container center-heading reveal-element">
-      <span class="tag light">Join Our Community</span>
-      <h2>Connect on <span>YouTube</span></h2>
-      <div class="gold-line center"></div>
-      <div class="card-box channel-box reveal-element">
-        <div class="channel-icon-wrap">
-          <span class="channel-icon">📺</span>
-        </div>
-        <h3>Étoffe <span class="gold-text">Éclairé</span></h3>
-        <p class="channel-tagline italic">Your go-to resource for fabric guides, care tips & smart shopping advice</p>
-        <div class="topics">
-          <div class="topic-card">
-            <span class="topic-emoji">🧵</span>
-            <span>Fabric Guides</span>
-          </div>
-          <div class="topic-card">
-            <span class="topic-emoji">🧺</span>
-            <span>Care Tutorials</span>
-          </div>
-          <div class="topic-card">
-            <span class="topic-emoji">💡</span>
-            <span>Smart Shopping</span>
-          </div>
-        </div>
-        <a href="#" class="btn primary">
-          <span class="btn-text">Subscribe Now</span>
-        </a>
-      </div>
-    </div>
-  </section>
+    /* Sections */
+    .section {
+      padding: 100px 25px 70px;
+      border-bottom: 1px solid var(--pale-gold);
+    }
+    .gold-accent {
+      background: linear-gradient(180deg, var(--pale-gold), var(--cream));
+    }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .container.narrow { max-width: 700px; }
+    .center-heading { text-align: center; margin-bottom: 55px; }
+    .tag {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--gold-dark);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .tag.light { color: var(--gold-deep); }
+    h2 {
+      font-size: 2.4rem;
+      margin: 10px 0;
+      color: var(--charcoal);
+      letter-spacing: -0.5px;
+    }
+    h2 span { color: var(--gold-rich); }
+    .gold-line {
+      width: 90px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold-rich), var(--gold), transparent);
+      margin: 15px 0;
+    }
+    .gold-line.center { margin: 15px auto; }
 
-  <!-- Fabrics -->
-  <section class="section" id="fabrics">
-    <div class="container">
-      <div class="center-heading reveal-element">
-        <span class="tag">Discover Materials</span>
-        <h2>Fabrics to <span>Know & Love</span></h2>
-        <div class="gold-line center"></div>
-        <p class="sub-note italic">Click each card to learn more ✦</p>
-      </div>
+    /* Hero Section */
+    .hero {
+      padding: 160px 25px 110px;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-frame {
+      border: 2px solid var(--gold);
+      padding: 70px 60px;
+      background: var(--ivory);
+      position: relative;
+    }
+    .hero-frame::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: -12px;
+      bottom: -12px;
+      border: 1px solid var(--soft-gold);
+      z-index: -1;
+    }
+    .ornament-top, .ornament-bottom {
+      color: var(--gold);
+      font-size: 1.2rem;
+      letter-spacing: 8px;
+      margin-bottom: 20px;
+    }
+    .ornament-bottom { margin-top: 30px; margin-bottom: 0; }
+    .pretitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--warm-brown);
+      margin-bottom: 25px;
+      font-size: 1.15rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 3.2rem);
+      line-height: 1.25;
+      margin-bottom: 15px;
+      color: var(--charcoal);
+    }
+    .gold-script {
+      color: var(--gold-rich);
+      font-style: italic;
+      position: relative;
+    }
+    .gold-script::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: -2px;
+      right: -2px;
+      height: 8px;
+      background: rgba(212, 180, 76, 0.25);
+      z-index: -1;
+    }
+    .divider-elegant {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .divider-elegant .line {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .divider-elegant .dot {
+      color: var(--gold-rich);
+      font-size: 1.3rem;
+    }
+    .hero-subtext {
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 16px 42px;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--gold-deep), var(--gold-rich));
+      color: white;
+      border: 2px solid transparent;
+    }
+    .btn.primary:hover {
+      background: transparent;
+      color: var(--gold-rich);
+      border-color: var(--gold-rich);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-gold-md);
+    }
+    .btn.secondary {
+      background: transparent;
+      color: var(--charcoal);
+      border: 2px solid var(--charcoal);
+    }
+    .btn.secondary:hover {
+      background: var(--charcoal);
+      color: var(--gold);
+      border-color: var(--charcoal);
+    }
 
-      <div class="fabrics-grid">
-        <!-- COTTON -->
-        <div class="fab-card reveal-element" onclick="toggleFabCard(this)">
-          <div class="fab-card-inner">
-            <div class="fab-icon-circle">☁️</div>
-            <div class="fab-header">
-              <h4>Cotton</h4>
-              <p class="fab-sub">Natural Fiber • Breathable</p>
-              <span class="fab-toggle-icon">+</span>
-            </div>
-            <div class="fab-details">
-              <div class="detail-item">
-                <span class="detail-label">Feel</span>
-                <span class="detail-value">Soft, gentle, comfortable all day</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Best For</span>
-                <span class="detail-value">Everyday wear • Tropical climates ☀️</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Care</span>
-                <span class="detail-value">Machine wash warm • Avoid high heat drying</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    /* Grid Layout */
+    .grid-row {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 55px;
+      align-items: start;
+    }
+    .section-heading-block h2 { line-height: 1.2; }
 
-        <!-- SILK -->
-        <div class="fab-card reveal-element" onclick="toggleFabCard(this)">
-          <div class="fab-card-inner">
-            <div class="fab-icon-circle">👑</div>
-            <div class="fab-header">
-              <h4>Silk</h4>
-              <p class="fab-sub">Luxury Natural • Elegant</p>
-              <span class="fab-toggle-icon">+</span>
-            </div>
-            <div class="fab-details">
-              <div class="detail-item">
-                <span class="detail-label">Feel</span>
-                <span class="detail-value">Smooth, lustrous, lightweight</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Best For</span>
-                <span class="detail-value">Blouses, scarves & special occasions</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Care</span>
-                <span class="detail-value">Hand wash cold or dry clean only • Never wring</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    /* Cards */
+    .card-box {
+      background: white;
+      border: 1px solid var(--soft-gold);
+      padding: 45px;
+      position: relative;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .card-box:hover {
+      box-shadow: var(--shadow-gold-md);
+      transform: translateY(-3px);
+    }
+    .corner-decoration {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-color: var(--gold);
+      border-style: solid;
+      border-width: 0;
+    }
+    .corner-decoration.top-right { top: 15px; right: 15px; border-top-width: 2px; border-right-width: 2px; }
+    .corner-decoration.bottom-left { bottom: 15px; left: 15px; border-bottom-width: 2px; border-left-width: 2px; }
+    .card-box h3.about-heading {
+      font-size: 1.4rem;
+      color: var(--charcoal);
+      margin: 25px 0 12px;
+    }
+    .card-box h3.about-heading:first-child { margin-top: 0; }
+    .card-box p {
+      margin-bottom: 18px;
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .drop-cap::first-letter {
+      font-size: 2.8rem;
+      float: left;
+      line-height: 1;
+      padding-right: 10px;
+      color: var(--gold-rich);
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .card-divider {
+      text-align: center;
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin: 25px 0;
+    }
+    .signature-line {
+      text-align: right;
+      color: var(--gold-dark);
+      padding-right: 20px;
+    }
 
-        <!-- POLYESTER -->
-        <div class="fab-card reveal-element" onclick="toggleFabCard(this)">
-          <div class="fab-card-inner">
-            <div class="fab-icon-circle">⚡</div>
-            <div class="fab-header">
-              <h4>Polyester</h4>
-              <p class="fab-sub">Synthetic • Durable</p>
-              <span class="fab-toggle-icon">+</span>
-            </div>
-            <div class="fab-details">
-              <div class="detail-item">
-                <span class="detail-label">Feel</span>
-                <span class="detail-value">Smooth, resilient, wrinkle-resistant</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Best For</span>
-                <span class="detail-value">Outerwear, activewear & travel ✈️</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Care</span>
-                <span class="detail-value">Machine wash warm • Use low heat only — it can melt</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    /* Channel Box */
+    .channel-box { text-align: center; }
+    .channel-icon-wrap {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--pale-gold), var(--soft-gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .channel-icon { font-size: 3rem; }
+    .channel-box h3 {
+      font-size: 1.8rem;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .channel-tagline {
+      color: var(--text-soft);
+      max-width: 450px;
+      margin: 0 auto 30px;
+    }
+    .topics {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+    .topic-card {
+      background: white;
+      border: 1px solid var(--gold);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+    .topic-card:hover {
+      background: var(--gold);
+      color: white;
+      transform: translateY(-3px);
+    }
+    .topic-emoji { font-size: 1.3rem; }
 
-        <!-- LINEN -->
-        <div class="fab-card reveal-element" onclick="toggleFabCard(this)">
-          <div class="fab-card-inner">
-            <div class="fab-icon-circle">🌿</div>
-            <div class="fab-header">
-              <h4>Linen</h4>
-              <p class="fab-sub">Natural • Eco-Friendly</p>
-              <span class="fab-toggle-icon">+</span>
-            </div>
-            <div class="fab-details">
-              <div class="detail-item">
-                <span class="detail-label">Feel</span>
-                <span class="detail-value">Textured, crisp, exceptionally cool</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Best For</span>
-                <span class="detail-value">Summer outfits & warm weather elegance</span>
-              </div>
-              <div class="detail-item">
-                <span class="detail-label">Care</span>
-                <span class="detail-value">Wash cold • Embrace the wrinkles — they're natural beauty</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    /* Fabrics Grid */
+    .sub-note {
+      text-align: center;
+      color: var(--text-soft);
+      margin-top: -10px;
+      margin-bottom: 40px;
+    }
+    .fabrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    .fab-card {
+      background: white;
+      border: 1px solid var(--soft-gold);
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    .fab-card:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-gold-sm);
+    }
+    .fab-card-inner { padding: 30px; }
+    .fab-icon-circle {
+      width: 70px;
+      height: 70px;
+      background: var(--pale-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .fab-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .fab-header h4 {
+      font-size: 1.4rem;
+      color: var(--charcoal);
+    }
+    .fab-sub {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      flex: 1 1 100%;
+    }
+    .fab-toggle-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      color: var(--gold-rich);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    .fab-card.open .fab-toggle-icon {
+      background: var(--gold);
+      color: white;
+      transform: rotate(45deg);
+    }
+    .fab-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+    .fab-card.open .fab-details {
+      max-height: 300px;
+      padding-top: 10px;
+    }
+    .detail-item {
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--pale-gold);
+    }
+    .detail-item:last-child { border-bottom: none; }
+    .detail-label {
+      display: block;
+      font-weight: 600;
+      color: var(--gold-deep);
+      font-size: 0.9rem;
+    }
+    .detail-value {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
 
-  <!-- Care -->
-  <section class="section gold-accent" id="care">
-    <div class="container">
-      <div class="center-heading reveal-element">
-        <span class="tag light">Wardrobe Wisdom</span>
-        <h2>Care with <span>Grace</span></h2>
-        <div class="gold-line center"></div>
-      </div>
-      <div class="care-grid">
-        <div class="care-card do-card reveal-element">
-          <div class="care-icon-wrap check">✓</div>
-          <h4>DO</h4>
-          <ul>
-            <li>Read the care label every time</li>
-            <li>Sort lights from darks before washing</li>
-            <li>Air dry delicates on a flat surface</li>
-            <li>Use gentle cycles for special fabrics</li>
-          </ul>
-        </div>
-        <div class="care-card dont-card reveal-element">
-          <div class="care-icon-wrap cross">✗</div>
-          <h4>DON'T</h4>
-          <ul>
-            <li>Assume everything is machine-safe</li>
-            <li>Overcrowd your washing machine</li>
-            <li>Use hot water on unknown fabrics</li>
-            <li>Ignore the care instructions</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+    /* Care Grid */
+    .care-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 35px;
+    }
+    .care-card {
+      background: white;
+      border: 1px solid var(--soft-gold);
+      padding: 35px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .care-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-gold-sm);
+    }
+    .care-icon-wrap {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 auto 20px;
+    }
+    .do-card .care-icon-wrap {
+      background: linear-gradient(135deg, #e6f4ea, #c8e6d0);
+      color: #2d7d46;
+    }
+    .dont-card .care-icon-wrap {
+      background: linear-gradient(135deg, #fef0f0, #fcd8d8);
+      color: #a83c3c;
+    }
+    .care-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+    .do-card h4 { color: #2d7d46; }
+    .dont-card h4 { color: #a83c3c; }
+    .care-card ul { text-align: left; }
+    .care-card li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--pale-gold);
+      color: var(--text-soft);
+    }
+    .care-card li:last-child { border-bottom: none; }
 
-  <!-- FAQ -->
-  <section class="section" id="faq">
-    <div class="container narrow">
-      <div class="center-heading reveal-element">
-        <span class="tag">Quick Answers</span>
-        <h2>Frequently Asked <span>Questions</span></h2>
-        <div class="gold-line center"></div>
-      </div>
-      <div class="faq-wrap">
-        <div class="faq-item reveal-element">
-          <button class="faq-q">
-            How do I know what fabric I'm buying online?
-            <span class="faq-symbol">+</span>
-          </button>
-          <div class="faq-a">
-            <p>Always check the product description for <strong>"Material"</strong> or <strong>"Composition."</strong> If missing, message the seller — trustworthy shops will tell you exactly what you're getting.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal-element">
-          <button class="faq-q">
-            Why do my clothes keep shrinking?
-            <span class="faq-symbol">+</span>
-          </button>
-          <div class="faq-a">
-            <p>Natural fibers like cotton, wool, and linen shrink most in <strong>hot water</strong> and <strong>high heat dryers.</strong> Wash cold and air dry to protect your clothes.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal-element">
-          <button class="faq-q">
-            Is expensive always better quality?
-            <span class="faq-symbol">+</span>
-          </button>
-          <div class="faq-a">
-            <p>Not at all — material, stitching, and care matter most. A well-made cotton shirt can last longer than a cheap designer piece.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-frame reveal-element">
-        <div class="footer-pattern">✦ ❖ ✦</div>
-        <h3 class="foot-logo">Étoffe <span>Éclairé</span></h3>
-        <p class="foot-tagline italic">"Thread of Knowledge, Style for Life"</p>
-        <div class="foot-divider"></div>
-        <p class="foot-cta">📺 Find us on YouTube: <strong>Étoffe Éclairé</strong></p>
-        <p class="copyright">&copy; 2026 Étoffe Éclairé • All Rights Reserved</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+    /* FAQ */
+    .faq-wrap { margin-top: 40px; }
+    .faq-item {
+      border: 1px solid var(--soft-gold);
+      margin-bottom: 15px;
+      background: white;
+      transition: all 0.3s ease;
+    }
+    .faq-item
