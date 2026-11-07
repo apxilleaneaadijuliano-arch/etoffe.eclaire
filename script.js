@@ -1,6 +1,5 @@
 // ==================================================
-// ÉTOFFE ÉCLAIRÉ — Complete JavaScript
-// Features: Progress Bar • Fade Scroll • Carousel • Fabric Cards • FAQ • Mobile Menu
+// ÉTOFFE ÉCLAIRÉ — JavaScript
 // ==================================================
 
 // === 1. SCROLL PROGRESS BAR ===
@@ -28,71 +27,7 @@ function checkScroll() {
 window.addEventListener('scroll', checkScroll);
 window.addEventListener('load', checkScroll);
 
-// === 3. IMAGE CAROUSEL ===
-let currentSlide = 0;
-const totalSlides = 4;
-
-function updateCarousel() {
-  const track = document.getElementById('carouselTrack');
-  const slides = document.querySelectorAll('.carousel-slide');
-  const dots = document.querySelectorAll('.carousel-dot');
-
-  if (track) {
-    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-  }
-
-  slides.forEach((slide, index) => {
-    slide.classList.toggle('active', index === currentSlide);
-  });
-
-  dots.forEach((dot, index) => {
-    dot.classList.toggle('active', index === currentSlide);
-  });
-}
-
-function setupCarousel() {
-  const dotsContainer = document.getElementById('dotsContainer');
-  const prevBtn = document.getElementById('prevSlide');
-  const nextBtn = document.getElementById('nextSlide');
-
-  // Create dots
-  if (dotsContainer) {
-    dotsContainer.innerHTML = '';
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement('span');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => {
-        currentSlide = i;
-        updateCarousel();
-      });
-      dotsContainer.appendChild(dot);
-    }
-  }
-
-  // Previous button
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      updateCarousel();
-    });
-  }
-
-  // Next button
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateCarousel();
-    });
-  }
-
-  // Auto-slide every 6 seconds
-  setInterval(() => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-  }, 6000);
-}
-
-// === 4. FABRIC CARDS — Toggle Expand/Collapse ===
+// === 3. FABRIC CARDS — Expand/Collapse ===
 function toggleFabCard(card) {
   const allCards = document.querySelectorAll('.fab-card');
   allCards.forEach(c => {
@@ -101,41 +36,38 @@ function toggleFabCard(card) {
   card.classList.toggle('open');
 }
 
-// === 5. FAQ SECTION — Toggle Answers ===
+// === 4. FAQ — Toggle Answers ===
 function setupFAQ() {
-  const faqItems = document.querySelectorAll('.faq-item');
+  const faqQuestions = document.querySelectorAll('.faq-q');
   
-  faqItems.forEach(item => {
-    const trigger = item.querySelector('.faq-trigger');
-    trigger.addEventListener('click', function() {
-      const content = item.querySelector('.faq-content');
-      const icon = this.querySelector('.faq-icon');
+  faqQuestions.forEach(q => {
+    q.addEventListener('click', function() {
+      const answer = this.nextElementSibling;
+      const icon = this.querySelector('span');
       
-      // Close other FAQs
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('open');
-          const otherContent = otherItem.querySelector('.faq-content');
-          const otherIcon = otherItem.querySelector('.faq-icon');
-          if (otherContent) otherContent.style.maxHeight = null;
-          if (otherIcon) otherIcon.textContent = '+';
+      // Close others
+      faqQuestions.forEach(otherQ => {
+        if (otherQ !== q) {
+          otherQ.classList.remove('active');
+          otherQ.nextElementSibling.style.maxHeight = null;
+          otherQ.querySelector('span').textContent = '+';
         }
       });
       
-      // Toggle current FAQ
-      item.classList.toggle('open');
-      if (item.classList.contains('open')) {
-        content.style.maxHeight = content.scrollHeight + 'px';
+      // Toggle current
+      this.classList.toggle('active');
+      if (this.classList.contains('active')) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
         icon.textContent = '−';
       } else {
-        content.style.maxHeight = null;
+        answer.style.maxHeight = null;
         icon.textContent = '+';
       }
     });
   });
 }
 
-// === 6. MOBILE NAVIGATION ===
+// === 5. MOBILE MENU ===
 function setupMobileMenu() {
   const menuToggle = document.getElementById('menuToggle');
   const navMenu = document.getElementById('navMenu');
@@ -145,7 +77,7 @@ function setupMobileMenu() {
       navMenu.classList.toggle('active');
     });
 
-    // Close menu when clicking a link
+    // Close menu on link click
     const navLinks = navMenu.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
@@ -155,10 +87,9 @@ function setupMobileMenu() {
   }
 }
 
-// === 7. INITIALIZE EVERYTHING ===
+// === 6. INITIALIZE ===
 document.addEventListener('DOMContentLoaded', function() {
   checkScroll();
-  setupCarousel();
   setupFAQ();
   setupMobileMenu();
 });
