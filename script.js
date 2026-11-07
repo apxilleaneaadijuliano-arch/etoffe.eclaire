@@ -13,17 +13,16 @@ function revealOnScroll() {
   
   reveals.forEach(element => {
     const elementTop = element.getBoundingClientRect().top;
-    const revealPoint = 120;
+    const revealPoint = 150;
     
     if (elementTop < windowHeight - revealPoint) {
-      element.classList.add('revealed');
+      element.classList.add('visible');
     }
   });
 }
 
 window.addEventListener('load', revealOnScroll);
 window.addEventListener('scroll', revealOnScroll);
-setTimeout(revealOnScroll, 100);
 
 // === FABRIC CARD TOGGLE ===
 function toggleFabCard(card) {
@@ -35,15 +34,12 @@ function toggleFabCard(card) {
 }
 
 // === FAQ ACCORDION ===
-const faqButtons = document.querySelectorAll('.faq-q');
-faqButtons.forEach(button => {
+document.querySelectorAll('.faq-q').forEach(button => {
   button.addEventListener('click', () => {
     const faqItem = button.parentElement;
-    
     document.querySelectorAll('.faq-item').forEach(item => {
       if (item !== faqItem) item.classList.remove('open');
     });
-    
     faqItem.classList.toggle('open');
   });
 });
@@ -56,14 +52,13 @@ menuToggle.addEventListener('click', () => {
   navMenu.classList.toggle('active');
 });
 
-const navLinks = navMenu.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
+document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
     navMenu.classList.remove('active');
   });
 });
 
-// === SMOOTH SCROLL ===
+// === SMOOTH SCROLL FOR ANCHOR LINKS ===
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -72,12 +67,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     
     if (targetElement) {
       const navHeight = document.querySelector('.navbar').offsetHeight;
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 30;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
       
       window.scrollTo({
         top: targetPosition,
         behavior: 'smooth'
       });
+      
+      // Close mobile menu after clicking
+      navMenu.classList.remove('active');
     }
   });
 });
