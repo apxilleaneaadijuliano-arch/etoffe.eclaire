@@ -85,15 +85,15 @@ function setupCarousel() {
     });
   }
 
-  // Auto-slide every 5 seconds
+  // Auto-slide every 6 seconds
   setInterval(() => {
     currentSlide = (currentSlide + 1) % totalSlides;
     updateCarousel();
-  }, 5000);
+  }, 6000);
 }
 
 // === 4. FABRIC CARDS — Toggle Expand/Collapse ===
-function toggleCard(card) {
+function toggleFabCard(card) {
   const allCards = document.querySelectorAll('.fab-card');
   allCards.forEach(c => {
     if (c !== card) c.classList.remove('open');
@@ -103,31 +103,33 @@ function toggleCard(card) {
 
 // === 5. FAQ SECTION — Toggle Answers ===
 function setupFAQ() {
-  const faqQuestions = document.querySelectorAll('.faq-q');
+  const faqItems = document.querySelectorAll('.faq-item');
   
-  faqQuestions.forEach(question => {
-    question.addEventListener('click', function() {
-      const answer = this.nextElementSibling;
-      const icon = this.querySelector('span');
+  faqItems.forEach(item => {
+    const trigger = item.querySelector('.faq-trigger');
+    trigger.addEventListener('click', function() {
+      const content = item.querySelector('.faq-content');
+      const icon = this.querySelector('.faq-icon');
       
       // Close other FAQs
-      faqQuestions.forEach(q => {
-        if (q !== question) {
-          q.classList.remove('active');
-          if (q.nextElementSibling) q.nextElementSibling.style.maxHeight = null;
-          const otherIcon = q.querySelector('span');
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('open');
+          const otherContent = otherItem.querySelector('.faq-content');
+          const otherIcon = otherItem.querySelector('.faq-icon');
+          if (otherContent) otherContent.style.maxHeight = null;
           if (otherIcon) otherIcon.textContent = '+';
         }
       });
       
       // Toggle current FAQ
-      this.classList.toggle('active');
-      if (this.classList.contains('active')) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        if (icon) icon.textContent = '−';
+      item.classList.toggle('open');
+      if (item.classList.contains('open')) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.textContent = '−';
       } else {
-        answer.style.maxHeight = null;
-        if (icon) icon.textContent = '+';
+        content.style.maxHeight = null;
+        icon.textContent = '+';
       }
     });
   });
