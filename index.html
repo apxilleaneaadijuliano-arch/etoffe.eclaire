@@ -6,82 +6,189 @@
   <title>Étoffe Éclairé | Enlightened Fabric</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <header>
-    <div class="logo">Étoffe <span>Éclairé</span></div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#fabrics">Fabrics</a>
-      <a href="#care">Care Tips</a>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="brand">Étoffe <span>Éclairé</span></a>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#fabrics" class="nav-link">Fabrics</a></li>
+        <li><a href="#care" class="nav-link">Care</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-content">
-      <h1>Étoffe Éclairé</h1>
-      <p>Enlightened Fabric</p>
-      <p class="subheading">Know what you wear. Care for it right.</p>
-      <a href="#about" class="btn">Discover More</a>
+      <h1>Enlightened <span>Fabric</span></h1>
+      <p class="hero-tagline">Where elegance meets knowledge</p>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">Understand what you wear • Care for it beautifully</p>
+      <a href="#about" class="btn-primary">Explore</a>
     </div>
   </section>
 
-  <section id="about">
-    <h2>Our Story</h2>
-    <p>Étoffe Éclairé means "Enlightened Fabric" — we believe understanding what you wear is the first step to loving what you own. Our goal is simple: make fabric knowledge clear, practical, and easy to use for everyone.</p>
-  </section>
-
-  <section id="fabrics">
-    <h2>Fabrics to Know</h2>
-    <div class="fabric-grid">
-      <div class="fabric-card">
-        <h3>☁️ Cotton</h3>
-        <p><strong>Natural & Breathable</strong></p>
-        <p>Soft, comfortable, and gets better with every wash. Perfect for everyday clothing.</p>
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Our Story</h2>
+        <div class="gold-line"></div>
       </div>
-      <div class="fabric-card">
-        <h3>👑 Silk</h3>
-        <p><strong>Luxurious & Elegant</strong></p>
-        <p>Smooth and beautiful — treat gently. Hand wash or dry clean only.</p>
-      </div>
-      <div class="fabric-card">
-        <h3>⚡ Polyester</h3>
-        <p><strong>Durable & Practical</strong></p>
-        <p>Wrinkle-resistant, quick-drying, and holds its shape well.</p>
+      <div class="about-wrapper">
+        <p class="about-text">
+          <strong>Étoffe Éclairé</strong> — meaning <em>"Enlightened Fabric"</em> — was born from a simple belief: elegance begins with understanding.
+        </p>
+        <p class="about-text">
+          When you know your fabrics, you choose better, care easier, and build a wardrobe that truly lasts. We're here to make that knowledge as beautiful as the clothes you wear.
+        </p>
       </div>
     </div>
   </section>
 
-  <section id="care">
-    <h2>Care Tips</h2>
-    <div class="care-grid">
-      <div class="care-box do">
-        <h3>✓ DO</h3>
-        <ul>
-          <li>Read the care label first</li>
-          <li>Separate lights from darks</li>
-          <li>Wash delicates by hand</li>
-          <li>Air dry when possible</li>
-        </ul>
+  <!-- Fabrics Section -->
+  <section class="section bg-cream" id="fabrics">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Meet Your Fabrics</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle">Click to discover what makes each one special</p>
       </div>
-      <div class="care-box dont">
-        <h3>✗ DON'T</h3>
-        <ul>
-          <li>Guess the washing temperature</li>
-          <li>Overload your machine</li>
-          <li>Wring or twist delicates</li>
-          <li>Ignore the care label</li>
-        </ul>
+      
+      <div class="fabrics-grid">
+        <div class="fabric-card" onclick="toggleFabric(this)">
+          <div class="fabric-emoji">☁️</div>
+          <h3>Cotton</h3>
+          <span class="fabric-category">Natural Fiber</span>
+          <p class="fabric-short">Soft, timeless, and endlessly versatile.</p>
+          <div class="fabric-details">
+            <p><strong>Origin:</strong> The fluffy boll of the cotton plant</p>
+            <p><strong>Vibe:</strong> Breathable • Hypoallergenic • Gets softer with time</p>
+            <p><strong>Best for:</strong> Everyday essentials, tees, dresses, linens</p>
+            <p><strong>Care:</strong> Machine wash warm or cold • Tumble dry low</p>
+          </div>
+        </div>
+
+        <div class="fabric-card" onclick="toggleFabric(this)">
+          <div class="fabric-emoji">👑</div>
+          <h3>Silk</h3>
+          <span class="fabric-category">Luxury Natural</span>
+          <p class="fabric-short">Nature's most elegant masterpiece.</p>
+          <div class="fabric-details">
+            <p><strong>Origin:</strong> Cocoons of the silkworm</p>
+            <p><strong>Vibe:</strong> Luxurious • Temperature-regulating • Timeless</p>
+            <p><strong>Best for:</strong> Blouses, scarves, evening wear, lingerie</p>
+            <p><strong>Care:</strong> Hand wash cold or dry clean • Lay flat to dry</p>
+          </div>
+        </div>
+
+        <div class="fabric-card" onclick="toggleFabric(this)">
+          <div class="fabric-emoji">⚡</div>
+          <h3>Polyester</h3>
+          <span class="fabric-category">Synthetic Fiber</span>
+          <p class="fabric-short">Practical beauty that travels beautifully.</p>
+          <div class="fabric-details">
+            <p><strong>Origin:</strong> Man-made from polymer fibers</p>
+            <p><strong>Vibe:</strong> Durable • Wrinkle-resistant • Quick-drying</p>
+            <p><strong>Best for:</strong> Activewear, outerwear, travel-friendly pieces</p>
+            <p><strong>Care:</strong> Machine wash • Low heat • Remove promptly</p>
+          </div>
+        </div>
+
+        <div class="fabric-card" onclick="toggleFabric(this)">
+          <div class="fabric-emoji">🌿</div>
+          <h3>Linen</h3>
+          <span class="fabric-category">Natural Fiber</span>
+          <p class="fabric-short">Timeless cool — naturally beautiful.</p>
+          <div class="fabric-details">
+            <p><strong>Origin:</strong> Stems of the flax plant</p>
+            <p><strong>Vibe:</strong> Exceptionally breathable • Eco-friendly • Characteristic wrinkles</p>
+            <p><strong>Best for:</strong> Summer outfits, shirts, dresses, warm days</p>
+            <p><strong>Care:</strong> Wash cold • Embrace the creases — they're part of its charm!</p>
+          </div>
+        </div>
+
+        <div class="fabric-card" onclick="toggleFabric(this)">
+          <div class="fabric-emoji">🐑</div>
+          <h3>Wool</h3>
+          <span class="fabric-category">Natural Fiber</span>
+          <p class="fabric-short">Warmth that breathes, season after season.</p>
+          <div class="fabric-details">
+            <p><strong>Origin:</strong> Fleece of sheep and other animals</p>
+            <p><strong>Vibe:</strong> Naturally insulating • Wrinkle-resistant • Biodegradable</p>
+            <p><strong>Best for:</strong> Sweaters, coats, suits, winter essentials</p>
+            <p><strong>Care:</strong> Hand wash cold or dry clean • Reshape & lay flat to dry</p>
+          </div>
+        </div>
+
+        <div class="fabric-card" onclick="toggleFabric(this)">
+          <div class="fabric-emoji">🌸</div>
+          <h3>Rayon / Viscose</h3>
+          <span class="fabric-category">Semi-Synthetic</span>
+          <p class="fabric-short">Silky elegance with a gentle heart.</p>
+          <div class="fabric-details">
+            <p><strong>Origin:</strong> Regenerated cellulose from wood pulp</p>
+            <p><strong>Vibe:</strong> Silky drape • Lightweight • Breathable</p>
+            <p><strong>Best for:</strong> Flowy dresses, blouses, feminine silhouettes</p>
+            <p><strong>Care:</strong> Hand wash cold or gentle cycle • Can shrink — be gentle!</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <p><strong>Étoffe Éclairé</strong> · Enlightened Fabric</p>
+  <!-- Care Section -->
+  <section class="section" id="care">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Care with Grace</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle">A little love goes a very long way</p>
+      </div>
+
+      <div class="care-wrapper">
+        <div class="care-card do-card">
+          <div class="care-icon">✨</div>
+          <h3>Always Do</h3>
+          <ul>
+            <li>✓ Read the care label — it knows best</li>
+            <li>✓ Sort lights from darks before washing</li>
+            <li>✓ Close zippers and buttons to protect fabric</li>
+            <li>✓ Wash delicates inside out in cool water</li>
+            <li>✓ Air dry whenever possible — your clothes will thank you</li>
+          </ul>
+        </div>
+
+        <div class="care-card dont-card">
+          <div class="care-icon">💫</div>
+          <h3>Never Do</h3>
+          <ul>
+            <li>✗ Guess the washing temperature — always check</li>
+            <li>✗ Overcrowd your machine — clothes need room to move</li>
+            <li>✗ Twist or wring delicate fabrics — gently squeeze instead</li>
+            <li>✗ Dry silk or wool in direct sunlight — it fades and weakens fibers</li>
+            <li>✗ Store damp clothes — mildew is a fabric's worst enemy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3>Étoffe <span>Éclairé</span></h3>
+      <p>Enlightened Fabric • Knowledge weaves style that lasts</p>
+      <div class="footer-divider"></div>
+      <p class="footer-note">Made with ♥ and an eye for elegance</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
