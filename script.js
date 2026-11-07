@@ -21,18 +21,16 @@ function revealOnScroll() {
   });
 }
 
-// Run once on load + on scroll
 window.addEventListener('load', revealOnScroll);
 window.addEventListener('scroll', revealOnScroll);
+setTimeout(revealOnScroll, 100);
 
 // === FABRIC CARD TOGGLE ===
 function toggleFabCard(card) {
-  // Close other cards
   const allCards = document.querySelectorAll('.fab-card');
   allCards.forEach(c => {
     if (c !== card) c.classList.remove('open');
   });
-  // Toggle current card
   card.classList.toggle('open');
 }
 
@@ -42,17 +40,15 @@ faqButtons.forEach(button => {
   button.addEventListener('click', () => {
     const faqItem = button.parentElement;
     
-    // Close other FAQs
     document.querySelectorAll('.faq-item').forEach(item => {
       if (item !== faqItem) item.classList.remove('open');
     });
     
-    // Toggle current FAQ
     faqItem.classList.toggle('open');
   });
 });
 
-// === MOBILE NAVIGATION TOGGLE ===
+// === MOBILE NAVIGATION ===
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
 
@@ -60,7 +56,6 @@ menuToggle.addEventListener('click', () => {
   navMenu.classList.toggle('active');
 });
 
-// Close mobile menu when clicking a link
 const navLinks = navMenu.querySelectorAll('.nav-link');
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
@@ -68,7 +63,7 @@ navLinks.forEach(link => {
   });
 });
 
-// === SMOOTH SCROLL FOR ANCHOR LINKS ===
+// === SMOOTH SCROLL ===
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -86,6 +81,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-
-// === INITIAL REVEAL — in case elements are already in view on load ===
-setTimeout(revealOnScroll, 100);
