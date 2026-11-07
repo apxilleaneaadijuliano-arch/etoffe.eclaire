@@ -7,10 +7,12 @@
 // 1️⃣ EXPANDING FABRIC CARDS
 // ======================================
 function toggleCard(card) {
+  // Close all other cards first
   const allCards = document.querySelectorAll('.expand-card');
   allCards.forEach(c => {
     if (c !== card) c.classList.remove('open');
   });
+  // Toggle clicked card
   card.classList.toggle('open');
 }
 
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const answer = this.nextElementSibling;
       const icon = this.querySelector('.faq-icon');
       
+      // Close other FAQs
       faqQuestions.forEach(q => {
         if (q !== this) {
           q.classList.remove('active');
@@ -34,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
+      // Toggle current FAQ
       this.classList.toggle('active');
       if (this.classList.contains('active')) {
         answer.style.maxHeight = answer.scrollHeight + 'px';
@@ -83,4 +87,7 @@ const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
 
 if (menuToggle) {
-  menuToggle.addEventListener('click', function
+  menuToggle.addEventListener('click', function() {
+    navMenu.classList.toggle('active');
+  });
+}
