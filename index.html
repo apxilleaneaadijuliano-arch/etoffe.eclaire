@@ -6,208 +6,72 @@
   <title>Étoffe Éclairé | Enlightened Fabric</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
-
   <header>
     <div class="logo">Étoffe <span>Éclairé</span></div>
     <nav>
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#documentation" class="nav-link">Project</a>
-      <a href="#fabrics" class="nav-link">Fabrics</a>
-      <a href="#care" class="nav-link">Care Tips</a>
-      <a href="#quiz" class="nav-link">Quiz</a>
-      <a href="#references" class="nav-link">References</a>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#fabrics">Fabrics</a>
+      <a href="#care">Care Tips</a>
     </nav>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <span class="eyebrow italic">"Thread of Knowledge, Style for Life"</span>
-        <h1>Understand Your <em>Fabric</em><br>Transform Your <em>Wardrobe</em></h1>
-        <p>Elevate your style • Protect your investment • Shop with confidence</p>
-        <div class="hero-buttons">
-          <a href="#documentation" class="btn primary gold-border">Our Story</a>
-          <a href="#fabrics" class="btn secondary gold-border">Explore Fabrics</a>
-        </div>
-      </div>
-    </section>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Étoffe Éclairé</h1>
+      <p>Enlightened Fabric</p>
+      <a href="#about" class="btn">Learn More</a>
+    </div>
+  </section>
 
-    <section class="overview-section" id="documentation">
-      <span class="section-kicker">About Us</span>
-      <h2>Our <em>Story</em></h2>
-      <div class="gold-line"></div>
-      <p class="section-intro">We believe that understanding what you wear is the first step to loving what you own. Our channel exists to make fabric knowledge simple, practical, and accessible for everyone.</p>
-      
-      <div class="overview-grid">
-        <div class="info-card">
-          <h3>Purpose of Our Channel</h3>
-          <p>We believe that <strong>understanding what you wear</strong> is the first step to loving what you own. Our channel exists to make fabric knowledge simple, practical, and accessible for everyone — because great style shouldn't be a luxury.</p>
-        </div>
-        <div class="info-card">
-          <h3>The Origin</h3>
-          <p>The name <strong>Étoffe Éclairé</strong> comes from <em>French</em> — the language known worldwide for elegance, fashion, and timeless style. Initials <strong>EC</strong> = <em>"Easy Chic."</em></p>
-          <p class="italic">Knowledge isn't a luxury — it's the foundation of truly timeless style.</p>
-        </div>
-        <div class="info-card">
-          <h3>What We Offer</h3>
-          <p>Clear fabric guides, practical care tips, and smart shopping advice — all in one place. No jargon, just useful information that helps you make better choices.</p>
-        </div>
-        <div class="info-card">
-          <h3>Our Vision</h3>
-          <p>Every person should feel confident in what they wear and how to care for it. When you know your fabrics, you protect your clothes, save money, and build a wardrobe that truly lasts.</p>
-        </div>
-      </div>
-    </section>
+  <section id="about">
+    <h2>About Us</h2>
+    <p>We believe that understanding what you wear is the first step to loving what you own. Our goal is to make fabric knowledge simple and accessible for everyone.</p>
+  </section>
 
-    <section class="fabric-section" id="fabrics">
-      <span class="section-kicker">Discover Materials</span>
-      <h2>Fabrics to <em>Know & Love</em></h2>
-      <div class="gold-line"></div>
-      <p class="section-intro">Click each card to learn more about these everyday essentials!</p>
-      
-      <div class="card-grid">
-        <div class="fabric-card" onclick="toggleFabric(this)">
-          <span class="fabric-icon">☁️</span>
-          <h3>Cotton</h3>
-          <p>Natural Fiber • Breathable & Comfortable</p>
-          <div class="fabric-details">
-            <p><strong>Feel:</strong> Soft, gentle, gets softer with every wash</p>
-            <p><strong>Best For:</strong> T-shirts, underwear, dresses, bed sheets</p>
-            <p><strong>Care:</strong> Machine wash warm or cold • Tumble dry low • May shrink in hot water</p>
-          </div>
-        </div>
+  <section id="fabrics">
+    <h2>Fabrics to Know</h2>
+    <div class="fabric-card">
+      <h3>Cotton</h3>
+      <p>Natural fiber — soft, breathable, and comfortable. Great for everyday wear.</p>
+    </div>
+    <div class="fabric-card">
+      <h3>Silk</h3>
+      <p>Luxurious natural fiber — smooth and elegant. Requires gentle hand washing.</p>
+    </div>
+    <div class="fabric-card">
+      <h3>Polyester</h3>
+      <p>Synthetic fiber — durable, wrinkle-resistant, and quick-drying.</p>
+    </div>
+  </section>
 
-        <div class="fabric-card" onclick="toggleFabric(this)">
-          <span class="fabric-icon">👑</span>
-          <h3>Silk</h3>
-          <p>Luxury Natural • Elegant & Smooth</p>
-          <div class="fabric-details">
-            <p><strong>Feel:</strong> Luxuriously smooth, cool to touch, beautiful drape</p>
-            <p><strong>Best For:</strong> Blouses, scarves, formal wear, lingerie</p>
-            <p><strong>Care:</strong> Hand wash cold or dry clean only • Avoid wringing • Lay flat to dry</p>
-          </div>
-        </div>
-
-        <div class="fabric-card" onclick="toggleFabric(this)">
-          <span class="fabric-icon">⚡</span>
-          <h3>Polyester</h3>
-          <p>Synthetic • Durable & Wrinkle-Resistant</p>
-          <div class="fabric-details">
-            <p><strong>Feel:</strong> Smooth, resilient, holds shape well</p>
-            <p><strong>Best For:</strong> Activewear, outerwear, travel clothes, blends</p>
-            <p><strong>Care:</strong> Machine wash warm • Low heat dry • Remove promptly from dryer</p>
-          </div>
-        </div>
-
-        <div class="fabric-card" onclick="toggleFabric(this)">
-          <span class="fabric-icon">🌿</span>
-          <h3>Linen</h3>
-          <p>Natural • Eco-Friendly & Exceptionally Cool</p>
-          <div class="fabric-details">
-            <p><strong>Feel:</strong> Textured, crisp, gets softer with use • Naturally breathable</p>
-            <p><strong>Best For:</strong> Summer outfits, shirts, dresses, warm weather</p>
-            <p><strong>Care:</strong> Wash cold • Embrace the wrinkles — they're part of its charm!</p>
-          </div>
-        </div>
-
-        <div class="fabric-card" onclick="toggleFabric(this)">
-          <span class="fabric-icon">🐑</span>
-          <h3>Wool</h3>
-          <p>Natural • Warm & Temperature-Regulating</p>
-          <div class="fabric-details">
-            <p><strong>Feel:</strong> Warm, slightly textured, naturally elastic</p>
-            <p><strong>Best For:</strong> Sweaters, coats, suits, winter wear</p>
-            <p><strong>Care:</strong> Hand wash cold or dry clean • Do NOT hang wet — reshape & lay flat</p>
-          </div>
-        </div>
-
-        <div class="fabric-card" onclick="toggleFabric(this)">
-          <span class="fabric-icon">🧵</span>
-          <h3>Rayon / Viscose</h3>
-          <p>Semi-Synthetic • Silky & Affordable</p>
-          <div class="fabric-details">
-            <p><strong>Feel:</strong> Silky, drapes beautifully, lightweight</p>
-            <p><strong>Best For:</strong> Dresses, blouses, flowing garments</p>
-            <p><strong>Care:</strong> Hand wash cold or gentle cycle • Can shrink significantly in heat</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="care-section" id="care">
-      <span class="section-kicker">Keep It Lovely</span>
-      <h2>Care with <em>Grace</em></h2>
-      <div class="gold-line"></div>
-      <p class="section-intro">A few simple habits can double the life of your clothes!</p>
-      
-      <div class="care-grid">
-        <div class="care-box do">
-          <h3>✓ DO</h3>
-          <ul>
-            <li>Read the care label — it knows your garment best!</li>
-            <li>Sort whites, lights, and darks before washing</li>
-            <li>Close zippers and buttons to prevent snags</li>
-            <li>Air dry delicates flat away from direct sun</li>
-            <li>Wash inside out to preserve color and print</li>
-          </ul>
-        </div>
-        <div class="care-box dont">
-          <h3>✗ DON'T</h3>
-          <ul>
-            <li>Assume everything can go in the same wash cycle</li>
-            <li>Use hot water unless the label says it's safe</li>
-            <li>Overcrowd your washing machine — clothes need space!</li>
-            <li>Twist or wring delicate fabrics — gently squeeze instead</li>
-            <li>Store damp clothes — mildew ruins fabric permanently</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="quiz-section" id="quiz">
-      <span class="section-kicker">Test Your Knowledge</span>
-      <h2>Fabric <em>Quiz</em></h2>
-      <div class="gold-line"></div>
-      <p class="section-intro">See how much you've learned — no pressure, just fun!</p>
-      
-      <div class="quiz-card">
-        <div id="question"></div>
-        <div class="answers" id="answers"></div>
-        <p id="feedback"></p>
-        <div class="quiz-buttons">
-          <span id="score-display">Score: 0/0</span>
-          <button class="btn primary" id="next-button">Next Question →</button>
-          <button class="btn secondary" id="restart-button">Start Over ↻</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="references-section" id="references">
-      <span class="section-kicker">Further Reading</span>
-      <h2>References & <em>Sources</em></h2>
-      <div class="gold-line"></div>
-      <p class="section-intro">Where our knowledge comes from — explore more if you'd like to dive deeper!</p>
-      
-      <div class="reference-card">
-        <ol>
-          <li>Avantika University. (2025). <em>The Importance of Textile Knowledge in Fashion Design.</em> — Understanding fibers, fabrics, and their behavior is fundamental to good design and garment care.</li>
-          <li>IDeA World College. <em>Why Fabric Knowledge Is Important in Fashion Education.</em> — Knowing your materials helps you make smarter buying decisions and protect your investments longer.</li>
-          <li>Brustureanu, C. (2024). "Relation Between Art, Design and Craft: The Importance of Learning Artistic Techniques in Textile Education." <em>Review of Artistic Education.</em> — Textile knowledge connects tradition, craft, and modern fashion practice.</li>
-        </ol>
-        <p class="source-note italic">💡 Remember: Every garment is unique — always check the specific care label on your item. Blends, dyes, and finishes can change how a fabric should be cared for, even within the same material category.</p>
-      </div>
-    </section>
-  </main>
+  <section id="care">
+    <h2>Care Tips</h2>
+    <div class="care-box">
+      <h3>Do's</h3>
+      <ul>
+        <li>Check the care label before washing</li>
+        <li>Separate lights and darks</li>
+        <li>Wash delicates by hand</li>
+      </ul>
+    </div>
+    <div class="care-box">
+      <h3>Don'ts</h3>
+      <ul>
+        <li>Use hot water unless safe</li>
+        <li>Overload your washing machine</li>
+        <li>Hang wet delicates to dry</li>
+      </ul>
+    </div>
+  </section>
 
   <footer>
-    <p><strong>Étoffe Éclairé</strong> · Enlightened Fabric. Know it. Wear it. Love it.</p>
-    <p class="footer-small">© 2026 · Made with care</p>
+    <p>Étoffe Éclairé · Enlightened Fabric</p>
   </footer>
 
   <script src="script.js"></script>
