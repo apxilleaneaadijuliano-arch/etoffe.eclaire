@@ -1,38 +1,34 @@
 // ==================================================
 // ÉTOFFE ÉCLAIRÉ — JavaScript Interactive Features
-// 5 Elements: Cards • FAQ • Scroll Animations • Progress Bar • Mobile Menu
+// 5 Elements: Fabric Cards • FAQ • Scroll Animation • Progress Bar • Mobile Menu
 // ==================================================
 
-// ======================================
-// 1️⃣ EXPANDING FABRIC CARDS
-// ======================================
+// 1️⃣ FABRIC CARDS — Click to Expand/Collapse
 function toggleCard(card) {
-  // Close all other cards first
-  const allCards = document.querySelectorAll('.expand-card');
+  // Close all other cards
+  const allCards = document.querySelectorAll('.fab-card');
   allCards.forEach(c => {
     if (c !== card) c.classList.remove('open');
   });
-  // Toggle clicked card
+  // Toggle current card
   card.classList.toggle('open');
 }
 
-// ======================================
-// 2️⃣ FAQ COLLAPSE/EXPAND SECTIONS
-// ======================================
+// 2️⃣ FAQ SECTION — Click to Show/Hide Answers
 document.addEventListener('DOMContentLoaded', function() {
-  const faqQuestions = document.querySelectorAll('.faq-question');
+  const faqQuestions = document.querySelectorAll('.faq-q');
   
   faqQuestions.forEach(question => {
     question.addEventListener('click', function() {
       const answer = this.nextElementSibling;
-      const icon = this.querySelector('.faq-icon');
+      const icon = this.querySelector('span');
       
       // Close other FAQs
       faqQuestions.forEach(q => {
-        if (q !== this) {
+        if (q !== question) {
           q.classList.remove('active');
           q.nextElementSibling.style.maxHeight = null;
-          const otherIcon = q.querySelector('.faq-icon');
+          const otherIcon = q.querySelector('span');
           if (otherIcon) otherIcon.textContent = '+';
         }
       });
@@ -50,16 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ======================================
-// 3️⃣ SCROLL ANIMATIONS — Fade-in on Scroll
-// ======================================
+// 3️⃣ SCROLL ANIMATIONS — Fade-in as you scroll down
 const fadeElements = document.querySelectorAll('.fade-up');
 
 function checkScroll() {
   fadeElements.forEach(el => {
     const rect = el.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    if (rect.top < windowHeight * 0.85) {
+    if (rect.top < window.innerHeight * 0.85) {
       el.classList.add('visible');
     }
   });
@@ -68,9 +61,7 @@ function checkScroll() {
 window.addEventListener('scroll', checkScroll);
 window.addEventListener('load', checkScroll);
 
-// ======================================
-// 4️⃣ SCROLL PROGRESS BAR
-// ======================================
+// 4️⃣ SCROLL PROGRESS BAR — Top loading indicator
 function updateProgressBar() {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -80,9 +71,7 @@ function updateProgressBar() {
 
 window.addEventListener('scroll', updateProgressBar);
 
-// ======================================
-// 5️⃣ MOBILE NAVIGATION TOGGLE
-// ======================================
+// 5️⃣ MOBILE NAVIGATION — Toggle menu on small screens
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
 
