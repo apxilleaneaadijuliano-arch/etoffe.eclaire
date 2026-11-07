@@ -1,95 +1,65 @@
-// ==================================================
-// ÉTOFFE ÉCLAIRÉ — JavaScript
-// ==================================================
+// ==========================================
+// ÉTOFFE ÉCLAIRÉ — Elegant & Light Script
+// ==========================================
 
-// === 1. SCROLL PROGRESS BAR ===
-function updateProgressBar() {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  const progressBar = document.getElementById('scrollProgress');
-  if (progressBar) progressBar.style.width = scrollPercent + '%';
-}
-window.addEventListener('scroll', updateProgressBar);
-
-// === 2. FADE-IN ANIMATION ON SCROLL ===
-const fadeElements = document.querySelectorAll('.fade-up');
-
-function checkScroll() {
-  fadeElements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.85) {
-      el.classList.add('visible');
+// 1. Smooth Scrolling ✨
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const target = document.querySelector(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
-}
-
-window.addEventListener('scroll', checkScroll);
-window.addEventListener('load', checkScroll);
-
-// === 3. FABRIC CARDS — Expand/Collapse ===
-function toggleFabCard(card) {
-  const allCards = document.querySelectorAll('.fab-card');
-  allCards.forEach(c => {
-    if (c !== card) c.classList.remove('open');
-  });
-  card.classList.toggle('open');
-}
-
-// === 4. FAQ — Toggle Answers ===
-function setupFAQ() {
-  const faqQuestions = document.querySelectorAll('.faq-q');
-  
-  faqQuestions.forEach(q => {
-    q.addEventListener('click', function() {
-      const answer = this.nextElementSibling;
-      const icon = this.querySelector('span');
-      
-      // Close other FAQs
-      faqQuestions.forEach(otherQ => {
-        if (otherQ !== q) {
-          otherQ.classList.remove('active');
-          otherQ.nextElementSibling.style.maxHeight = null;
-          otherQ.querySelector('span').textContent = '+';
-        }
-      });
-      
-      // Toggle current FAQ
-      this.classList.toggle('active');
-      if (this.classList.contains('active')) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        icon.textContent = '−';
-      } else {
-        answer.style.maxHeight = null;
-        icon.textContent = '+';
-      }
-    });
-  });
-}
-
-// === 5. MOBILE MENU ===
-function setupMobileMenu() {
-  const menuToggle = document.getElementById('menuToggle');
-  const navMenu = document.getElementById('navMenu');
-
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      navMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking a link
-    const navLinks = navMenu.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        navMenu.classList.remove('active');
-      });
-    });
-  }
-}
-
-// === 6. INITIALIZE EVERYTHING ===
-document.addEventListener('DOMContentLoaded', function() {
-  checkScroll();
-  setupFAQ();
-  setupMobileMenu();
 });
+
+// 2. Active Nav Highlight ✨
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    if (window.pageYOffset >= top - 180) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+});
+
+// 3. Fade-in Cards on Scroll ✨
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fabric-card, .care-card').forEach(card => {
+  observer.observe(card);
+});
+
+// 4. Golden Scroll Progress Bar ✨
+const progress = document.createElement('div');
+progress.style.cssText = `
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, #E8D08C, #D4AF37, #B8922F);
+  z-index: 9999; width: 0%;
+`;
+document.body.appendChild(progress);
+
+window.addEventListener('scroll', () => {
+  const percent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  progress.style.width = percent + '%';
+});
+
+// 5. Welcome ✨
+console.log('✨ Étoffe Éclairé — Enlightened Fabric ✨');
