@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Étoffe Éclairé | Thread of Knowledge, Style for Life</title>
+  <title>Étoffe Éclairé</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
   <!-- Progress Bar -->
   <div class="progress-wrap"><div class="progress-bar" id="scrollProgress"></div></div>
 
-  <!-- Header -->
+  <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="#hero" class="brand">Étoffe<span>Éclairé</span></a>
@@ -31,11 +31,11 @@
 
   <!-- Hero -->
   <section class="hero" id="hero">
-    <div class="hero-content fade-up">
+    <div class="hero-content">
       <div class="hero-frame">
         <p class="pretitle">"Thread of knowledge, style for life"</p>
         <h1>Understand Your <em>Fabric</em><br>Transform Your <em>Wardrobe</em></h1>
-        <p>Elevate your style. Protect your investment. Shop with confidence. Because fashion should last.</p>
+        <p>Elevate your style. Protect your investment. Shop with confidence.</p>
         <div class="hero-buttons">
           <a href="#about" class="btn primary">Our Story</a>
           <a href="#fabrics" class="btn secondary">Explore Fabrics</a>
@@ -48,17 +48,15 @@
   <section class="section" id="about">
     <div class="container">
       <div class="grid-row">
-        <div class="col fade-up">
+        <div class="col">
           <span class="tag">About Us</span>
           <h2>Enlightened <em>Fashion</em></h2>
           <div class="gold-line"></div>
         </div>
-        <div class="col fade-up">
+        <div class="col">
           <div class="card-box">
-            <p><strong>Étoffe Éclairé</strong> means "Enlightened Fabric." Our philosophy guides everything we share.</p>
-            <p>Too many people buy beautiful clothes only to ruin them because they don't understand what they're made of. Online shopping makes it impossible to feel fabric before buying. That uncertainty shouldn't cost you money.</p>
-            <p>We bridge that gap. Knowledge isn't a luxury — it's the foundation of truly timeless style.</p>
-            <p class="signature">— Thread of knowledge, style for life</p>
+            <p><strong>Étoffe Éclairé</strong> means "Enlightened Fabric." Our mission is to help you understand what you wear.</p>
+            <p>Too many beautiful clothes get ruined simply because the fabric was misunderstood. We bridge that gap — knowledge isn't a luxury, it's the foundation of great style.</p>
           </div>
         </div>
       </div>
@@ -67,21 +65,20 @@
 
   <!-- Channel -->
   <section class="section bg-warm" id="channel">
-    <div class="container center-heading fade-up">
-      <span class="tag">Our Community</span>
+    <div class="container center-heading">
+      <span class="tag">Our Channel</span>
       <h2>Join Us on <em>YouTube</em></h2>
       <div class="gold-line center"></div>
       <div class="card-box channel-box">
         <div class="channel-icon">📺</div>
         <h3>Étoffe Éclairé</h3>
-        <p class="channel-tagline">"Thread of knowledge, style for life"</p>
-        <p>Your go-to channel for fabric education, smart shopping tips, and wardrobe care.</p>
+        <p>Your go-to resource for fabric guides, care tips, and smart shopping advice.</p>
         <div class="topics">
           <div class="topic">🧵 Fabric Guides</div>
           <div class="topic">🧺 Care Tutorials</div>
           <div class="topic">💡 Smart Shopping</div>
         </div>
-        <a href="#" class="btn primary">Subscribe on YouTube</a>
+        <a href="#" class="btn primary">Subscribe Now</a>
       </div>
     </div>
   </section>
@@ -89,107 +86,66 @@
   <!-- Fabrics -->
   <section class="section" id="fabrics">
     <div class="container">
-      <div class="center-heading fade-up">
+      <div class="center-heading">
         <span class="tag">Fabric Guide</span>
-        <h2>Fabrics to <em>Know and Love</em></h2>
+        <h2>Fabrics to <em>Know & Love</em></h2>
         <div class="gold-line center"></div>
-        <p>Click each card to learn more</p>
       </div>
 
       <div class="fabrics-grid">
-        <!-- COTTON -->
-        <div class="fab-card fade-up" onclick="toggleFabCard(this)">
+        <div class="fab-card" onclick="toggleFabCard(this)">
           <div class="fab-icon-box">☁️</div>
           <div class="fab-header">
             <h4>Cotton</h4>
-            <p class="fab-type">Natural Fiber &bull; Breathable</p>
+            <p>Natural • Breathable</p>
             <span class="fab-expand">+</span>
           </div>
           <div class="fab-details">
-            <div class="detail-row">
-              <span class="detail-label">Feel</span>
-              <span class="detail-text">Soft, gentle, and comfortable all day long</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Best For</span>
-              <span class="detail-text">Everyday wear. Perfect for our tropical climate ☀️</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Care</span>
-              <span class="detail-text">Machine wash warm. Avoid high heat drying</span>
-            </div>
+            <p><strong>Feel:</strong> Soft, gentle, comfortable all day</p>
+            <p><strong>Best for:</strong> Everyday wear, tropical climates ☀️</p>
+            <p><strong>Care:</strong> Machine wash warm, avoid high heat</p>
           </div>
         </div>
 
-        <!-- SILK -->
-        <div class="fab-card fade-up" onclick="toggleFabCard(this)">
+        <div class="fab-card" onclick="toggleFabCard(this)">
           <div class="fab-icon-box">👑</div>
           <div class="fab-header">
             <h4>Silk</h4>
-            <p class="fab-type">Luxury Natural &bull; Elegant</p>
+            <p>Luxury • Elegant</p>
             <span class="fab-expand">+</span>
           </div>
           <div class="fab-details">
-            <div class="detail-row">
-              <span class="detail-label">Feel</span>
-              <span class="detail-text">Smooth, lustrous, and lightweight</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Best For</span>
-              <span class="detail-text">Blouses, scarves, and special occasions</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Care</span>
-              <span class="detail-text">Hand wash cold or dry clean only. Never wring</span>
-            </div>
+            <p><strong>Feel:</strong> Smooth, lustrous, lightweight</p>
+            <p><strong>Best for:</strong> Blouses, scarves, special occasions</p>
+            <p><strong>Care:</strong> Hand wash cold or dry clean only</p>
           </div>
         </div>
 
-        <!-- POLYESTER -->
-        <div class="fab-card fade-up" onclick="toggleFabCard(this)">
+        <div class="fab-card" onclick="toggleFabCard(this)">
           <div class="fab-icon-box">⚡</div>
           <div class="fab-header">
             <h4>Polyester</h4>
-            <p class="fab-type">Synthetic &bull; Durable</p>
+            <p>Synthetic • Durable</p>
             <span class="fab-expand">+</span>
           </div>
           <div class="fab-details">
-            <div class="detail-row">
-              <span class="detail-label">Feel</span>
-              <span class="detail-text">Smooth, resilient, and wrinkle-resistant</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Best For</span>
-              <span class="detail-text">Outerwear, activewear, and travel ✈️</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Care</span>
-              <span class="detail-text">Machine wash warm. Use low heat only — it can melt</span>
-            </div>
+            <p><strong>Feel:</strong> Smooth, resilient, wrinkle-resistant</p>
+            <p><strong>Best for:</strong> Outerwear, activewear, travel ✈️</p>
+            <p><strong>Care:</strong> Machine wash warm, low heat only</p>
           </div>
         </div>
 
-        <!-- LINEN -->
-        <div class="fab-card fade-up" onclick="toggleFabCard(this)">
+        <div class="fab-card" onclick="toggleFabCard(this)">
           <div class="fab-icon-box">🌿</div>
           <div class="fab-header">
             <h4>Linen</h4>
-            <p class="fab-type">Natural &bull; Eco-Friendly</p>
+            <p>Natural • Eco-Friendly</p>
             <span class="fab-expand">+</span>
           </div>
           <div class="fab-details">
-            <div class="detail-row">
-              <span class="detail-label">Feel</span>
-              <span class="detail-text">Textured, crisp, and exceptionally cool</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Best For</span>
-              <span class="detail-text">Summer outfits and warm weather elegance</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Care</span>
-              <span class="detail-text">Wash cold. Embrace the wrinkles — they're natural beauty</span>
-            </div>
+            <p><strong>Feel:</strong> Textured, crisp, exceptionally cool</p>
+            <p><strong>Best for:</strong> Summer outfits, warm weather elegance</p>
+            <p><strong>Care:</strong> Wash cold — embrace the wrinkles!</p>
           </div>
         </div>
       </div>
@@ -199,29 +155,28 @@
   <!-- Care -->
   <section class="section bg-warm" id="care">
     <div class="container">
-      <div class="center-heading fade-up">
+      <div class="center-heading">
         <span class="tag">Care Guide</span>
         <h2>Care with <em>Grace</em></h2>
         <div class="gold-line center"></div>
-        <p>Simple habits that keep your wardrobe beautiful for years</p>
       </div>
       <div class="care-grid">
-        <div class="care-card do fade-up">
+        <div class="care-card do">
           <h4>✓ DO</h4>
           <ul>
-            <li>✓ Read the care label every time</li>
-            <li>✓ Sort lights from darks before washing</li>
-            <li>✓ Air dry delicates on a flat surface</li>
-            <li>✓ Use gentle cycles for special fabrics</li>
+            <li>✓ Read care labels every time</li>
+            <li>✓ Sort lights from darks</li>
+            <li>✓ Air dry delicates flat</li>
+            <li>✓ Use gentle cycles</li>
           </ul>
         </div>
-        <div class="care-card dont fade-up">
+        <div class="care-card dont">
           <h4>✗ DON'T</h4>
           <ul>
             <li>✗ Assume everything is machine-safe</li>
-            <li>✗ Overcrowd your washing machine</li>
+            <li>✗ Overcrowd the washer</li>
             <li>✗ Use hot water on unknown fabrics</li>
-            <li>✗ Ignore the care instructions</li>
+            <li>✗ Ignore the instructions</li>
           </ul>
         </div>
       </div>
@@ -231,34 +186,28 @@
   <!-- FAQ -->
   <section class="section" id="faq">
     <div class="container narrow">
-      <div class="center-heading fade-up">
-        <span class="tag">Quick Answers</span>
+      <div class="center-heading">
+        <span class="tag">FAQ</span>
         <h2>Frequently Asked <em>Questions</em></h2>
         <div class="gold-line center"></div>
       </div>
       <div class="faq-wrap">
-        <div class="faq-item fade-up">
-          <button class="faq-q">How do I know what fabric I'm buying online? <span>+</span></button>
+        <div class="faq-item">
+          <button class="faq-q">How do I know fabric when shopping online? <span>+</span></button>
           <div class="faq-a">
-            <p>Always check the product description for "Material" or "Composition." If missing, message the seller — trustworthy shops will tell you exactly what you're getting.</p>
+            <p>Check the product description for "Material" or "Composition." If missing, ask the seller — trustworthy shops will tell you.</p>
           </div>
         </div>
-        <div class="faq-item fade-up">
-          <button class="faq-q">Why do my clothes keep shrinking? <span>+</span></button>
+        <div class="faq-item">
+          <button class="faq-q">Why do clothes shrink? <span>+</span></button>
           <div class="faq-a">
-            <p>Natural fibers like cotton, wool, and linen shrink most in hot water and high heat dryers. Wash cold and air dry to protect your clothes.</p>
+            <p>Natural fibers shrink in hot water and high heat dryers. Wash cold and air dry to keep them safe!</p>
           </div>
         </div>
-        <div class="faq-item fade-up">
-          <button class="faq-q">Is expensive always better quality? <span>+</span></button>
+        <div class="faq-item">
+          <button class="faq-q">Expensive = better quality? <span>+</span></button>
           <div class="faq-a">
-            <p>Not at all — material, stitching, and care matter most. A well-made cotton shirt can last longer than a cheap designer piece.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-up">
-          <button class="faq-q">What fabrics work best in tropical weather? <span>+</span></button>
-          <div class="faq-a">
-            <p>Go natural — cotton, linen, and rayon breathe best. Avoid thick polyester when it's hot and humid!</p>
+            <p>Not always. Material, stitching, and care matter most. A well-made cotton shirt can outlast a cheap designer piece.</p>
           </div>
         </div>
       </div>
@@ -270,10 +219,8 @@
     <div class="container">
       <div class="footer-frame">
         <h3 class="foot-logo">Étoffe <span>Éclairé</span></h3>
-        <p class="foot-tag">"Thread of knowledge, style for life"</p>
-        <div class="foot-divider"></div>
-        <p class="foot-channel">📺 Find us on YouTube: <strong>Étoffe Éclairé</strong></p>
-        <p class="copyright">&copy; 2026 Étoffe Éclairé. All Rights Reserved.</p>
+        <p>"Thread of knowledge, style for life"</p>
+        <p class="copyright">&copy; 2026 Étoffe Éclairé</p>
       </div>
     </div>
   </footer>
