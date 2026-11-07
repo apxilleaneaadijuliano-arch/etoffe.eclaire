@@ -1,90 +1,58 @@
-// ==========================================
-// ÉTOFFE ÉCLAIRÉ — ELEGANT JAVASCRIPT
-// Smooth • Chic • Refined
-// ==========================================
+:root {
+  --ivory: #fffdf8;
+  --cream: #f9f5eb;
+  --pale-gold: #f3ead3;
+  --soft-gold: #e4d194;
+  --gold-light: #d9bc60;
+  --gold: #c9a63e;
+  --gold-rich: #b89225;
+  --gold-dark: #8f6f1a;
+  --gold-deep: #6b5412;
+  --black: #121212;
+  --charcoal: #1f1f1f;
+  --dark-gray: #333333;
+  --mid-gray: #555555;
+  --light-gray: #888888;
+  --border-gold: #c9a63e;
+  --shadow-gold-sm: 0 4px 15px rgba(185, 147, 37, 0.08);
+  --shadow-gold-md: 0 8px 30px rgba(185, 147, 37, 0.15);
+  --shadow-gold-lg: 0 12px 45px rgba(185, 147, 37, 0.22);
+  --shadow-black-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-black-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
 
-// === 1. SMOOTH SCROLLING FOR NAVIGATION ===
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const targetSection = document.querySelector(targetId);
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--ivory);
+  color: var(--black);
+  line-height: 1.7;
+  position: relative;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+.italic { font-style: italic; }
+.gold-text { color: var(--gold-rich); }
 
-// === 2. ACTIVE NAVIGATION HIGHLIGHT ON SCROLL ===
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
+/* Decorative Gold Glows */
+.gold-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 166, 62, 0.06), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+.gold-glow.top-left { top: -150px; left: -150px; }
+.gold-glow.bottom-right { bottom: -150px; right: -150px; }
 
-window.addEventListener('scroll', () => {
-  let currentSection = '';
-  
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    if (window.pageYOffset >= sectionTop - 200) {
-      currentSection = section.getAttribute('id');
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${currentSection}`) {
-      link.classList.add('active');
-    }
-  });
-});
-
-// === 3. ELEGANT FADE-IN ANIMATION ON SCROLL ===
-const observerOptions = {
-  threshold: 0.12,
-  rootMargin: '0px 0px -30px 0px'
-};
-
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll('.fabric-card, .care-card').forEach(el => {
-  fadeObserver.observe(el);
-});
-
-// === 4. LUXURY SCROLL PROGRESS INDICATOR ===
-const progressBar = document.createElement('div');
-progressBar.style.cssText = `
+/* Progress Bar */
+.progress-wrap {
   position: fixed;
   top: 0;
   left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #E8D08C, #C8A951, #B8922F);
-  z-index: 9999;
-  width: 0%;
-  transition: width 0.1s ease;
-`;
-document.body.appendChild(progressBar);
-
-window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  progressBar.style.width = scrollPercent + '%';
-});
-
-// === 5. ELEGANT WELCOME MESSAGE ===
-console.log(`
-╔══════════════════════════════════════════════════╗
-║     ✨  ÉTOFFE ÉCLAIRÉ — Enlightened Fabric  ✨     ║
-║                                                    ║
-║     Where elegance meets understanding            ║
-║     Thank you for visiting!                       ║
-╚══════════════════════════════════════════════════╝
-`);
+  width:
