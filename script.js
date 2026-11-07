@@ -1,27 +1,34 @@
-// === Progress Bar ===
+// ==================================================
+// ÉTOFFE ÉCLAIRÉ — Complete JavaScript
+// Features: Progress Bar • Fade Scroll • Carousel • Fabric Cards • FAQ • Mobile Menu
+// ==================================================
+
+// === 1. SCROLL PROGRESS BAR ===
 function updateProgressBar() {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
   const scrollPercent = (scrollTop / docHeight) * 100;
-  document.getElementById('progressBar').style.width = scrollPercent + '%';
+  const progressBar = document.getElementById('scrollProgress');
+  if (progressBar) progressBar.style.width = scrollPercent + '%';
 }
 window.addEventListener('scroll', updateProgressBar);
 
-// === Fade-in Animation ===
-function setupFadeIn() {
-  const elements = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
+// === 2. FADE-IN ANIMATION ON SCROLL ===
+const fadeElements = document.querySelectorAll('.fade-up');
 
-  elements.forEach(el => observer.observe(el));
+function checkScroll() {
+  fadeElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      el.classList.add('visible');
+    }
+  });
 }
 
-// === Image Carousel ===
+window.addEventListener('scroll', checkScroll);
+window.addEventListener('load', checkScroll);
+
+// === 3. IMAGE CAROUSEL ===
 let currentSlide = 0;
 const totalSlides = 4;
 
@@ -30,7 +37,9 @@ function updateCarousel() {
   const slides = document.querySelectorAll('.carousel-slide');
   const dots = document.querySelectorAll('.carousel-dot');
 
-  track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+  if (track) {
+    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+  }
 
   slides.forEach((slide, index) => {
     slide.classList.toggle('active', index === currentSlide);
@@ -43,76 +52,110 @@ function updateCarousel() {
 
 function setupCarousel() {
   const dotsContainer = document.getElementById('dotsContainer');
-  for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement('span');
-    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => {
-      currentSlide = i;
-      updateCarousel();
-    });
-    dotsContainer.appendChild(dot);
+  const prevBtn = document.getElementById('prevSlide');
+  const nextBtn = document.getElementById('nextSlide');
+
+  // Create dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        currentSlide = i;
+        updateCarousel();
+      });
+      dotsContainer.appendChild(dot);
+    }
   }
 
-  document.getElementById('prevSlide').addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-  });
+  // Previous button
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    });
+  }
 
-  document.getElementById('nextSlide').addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-  });
+  // Next button
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    });
+  }
 
+  // Auto-slide every 5 seconds
   setInterval(() => {
     currentSlide = (currentSlide + 1) % totalSlides;
     updateCarousel();
   }, 5000);
 }
 
-// === Fabric Cards Toggle ===
+// === 4. FABRIC CARDS — Toggle Expand/Collapse ===
 function toggleCard(card) {
-  const allCards = document.querySelectorAll('.fabric-card');
+  const allCards = document.querySelectorAll('.fab-card');
   allCards.forEach(c => {
     if (c !== card) c.classList.remove('open');
   });
   card.classList.toggle('open');
 }
 
-// === FAQ Toggle ===
+// === 5. FAQ SECTION — Toggle Answers ===
 function setupFAQ() {
-  const faqButtons = document.querySelectorAll('.faq-q');
-  faqButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const answer = item.querySelector('.faq-a');
-      const icon = btn.querySelector('span');
-
-      item.classList.toggle('open');
-      answer.style.maxHeight = item.classList.contains('open') ? answer.scrollHeight + 'px' : '0';
-      icon.textContent = item.classList.contains('open') ? '−' : '+';
+  const faqQuestions = document.querySelectorAll('.faq-q');
+  
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', function() {
+      const answer = this.nextElementSibling;
+      const icon = this.querySelector('span');
+      
+      // Close other FAQs
+      faqQuestions.forEach(q => {
+        if (q !== question) {
+          q.classList.remove('active');
+          if (q.nextElementSibling) q.nextElementSibling.style.maxHeight = null;
+          const otherIcon = q.querySelector('span');
+          if (otherIcon) otherIcon.textContent = '+';
+        }
+      });
+      
+      // Toggle current FAQ
+      this.classList.toggle('active');
+      if (this.classList.contains('active')) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        if (icon) icon.textContent = '−';
+      } else {
+        answer.style.maxHeight = null;
+        if (icon) icon.textContent = '+';
+      }
     });
   });
 }
 
-// === Mobile Menu ===
+// === 6. MOBILE NAVIGATION ===
 function setupMobileMenu() {
-  const menuBtn = document.getElementById('menuBtn');
-  const navLinks = document.getElementById('navLinks');
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
 
-  menuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      navMenu.classList.toggle('active');
     });
-  });
+
+    // Close menu when clicking a link
+    const navLinks = navMenu.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navMenu.classList.remove('active');
+      });
+    });
+  }
 }
 
-// === Initialize Everything ===
-document.addEventListener('DOMContentLoaded', () => {
-  setupFadeIn();
+// === 7. INITIALIZE EVERYTHING ===
+document.addEventListener('DOMContentLoaded', function() {
+  checkScroll();
   setupCarousel();
   setupFAQ();
   setupMobileMenu();
