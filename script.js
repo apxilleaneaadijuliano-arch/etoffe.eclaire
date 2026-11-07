@@ -1,5 +1,10 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('.nav-links a').forEach(link => {
+// ==========================================
+// ÉTOFFE ÉCLAIRÉ — ELEGANT JAVASCRIPT
+// Smooth • Chic • Refined
+// ==========================================
+
+// === 1. SMOOTH SCROLLING FOR NAVIGATION ===
+document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
     const targetId = this.getAttribute('href');
@@ -13,16 +18,16 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-// Highlight active section on scroll
+// === 2. ACTIVE NAVIGATION HIGHLIGHT ON SCROLL ===
 const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-links a');
+const navLinks = document.querySelectorAll('.nav-link');
 
 window.addEventListener('scroll', () => {
   let currentSection = '';
   
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
-    if (window.pageYOffset >= sectionTop - 150) {
+    if (window.pageYOffset >= sectionTop - 200) {
       currentSection = section.getAttribute('id');
     }
   });
@@ -35,24 +40,51 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// Fade-in animation for cards when scrolling
-const allCards = document.querySelectorAll('.fabric-card, .care-card');
+// === 3. ELEGANT FADE-IN ANIMATION ON SCROLL ===
+const observerOptions = {
+  threshold: 0.12,
+  rootMargin: '0px 0px -30px 0px'
+};
 
-const observer = new IntersectionObserver((entries) => {
+const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.1 });
+}, observerOptions);
 
-allCards.forEach(card => {
-  card.style.opacity = '0';
-  card.style.transform = 'translateY(20px)';
-  card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(card);
+document.querySelectorAll('.fabric-card, .care-card').forEach(el => {
+  fadeObserver.observe(el);
 });
 
-// Welcome message
-console.log('✨ Étoffe Éclairé — Enlightened Fabric ✨');
+// === 4. LUXURY SCROLL PROGRESS INDICATOR ===
+const progressBar = document.createElement('div');
+progressBar.style.cssText = `
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #E8D08C, #C8A951, #B8922F);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s ease;
+`;
+document.body.appendChild(progressBar);
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  progressBar.style.width = scrollPercent + '%';
+});
+
+// === 5. ELEGANT WELCOME MESSAGE ===
+console.log(`
+╔══════════════════════════════════════════════════╗
+║     ✨  ÉTOFFE ÉCLAIRÉ — Enlightened Fabric  ✨     ║
+║                                                    ║
+║     Where elegance meets understanding            ║
+║     Thank you for visiting!                       ║
+╚══════════════════════════════════════════════════╝
+`);
