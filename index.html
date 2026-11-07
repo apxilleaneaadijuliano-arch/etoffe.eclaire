@@ -3,143 +3,212 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Étoffe Éclairé | Enlightened Fabric</title>
+  <title>Étoffe Éclairé</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Luxury Navigation -->
+  <!-- Progress Bar -->
+  <div class="progress-wrap"><div class="progress-bar" id="scrollProgress"></div></div>
+
+  <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#home" class="brand">
-        Étoffe <span>Éclairé</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#home" class="nav-link">Home</a></li>
+      <a href="#hero" class="brand">Étoffe<span>Éclairé</span></a>
+      <ul class="nav-menu" id="navMenu">
         <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#channel" class="nav-link">Channel</a></li>
         <li><a href="#fabrics" class="nav-link">Fabrics</a></li>
         <li><a href="#care" class="nav-link">Care</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
       </ul>
+      <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
+  <!-- Hero -->
+  <section class="hero" id="hero">
     <div class="hero-content">
-      <div class="hero-emoji">✨</div>
-      <h1>Enlightened <span>Fabric</span></h1>
-      <p class="tagline">Where elegance meets understanding</p>
-      <div class="gold-divider"></div>
-      <p class="subtext">Know what you wear • Cherish what you own</p>
-      <a href="#about" class="luxury-btn">Discover</a>
+      <div class="hero-frame">
+        <p class="pretitle">"Thread of knowledge, style for life"</p>
+        <h1>Understand Your <em>Fabric</em><br>Transform Your <em>Wardrobe</em></h1>
+        <p>Elevate your style. Protect your investment. Shop with confidence.</p>
+        <div class="hero-buttons">
+          <a href="#about" class="btn primary">Our Story</a>
+          <a href="#fabrics" class="btn secondary">Explore Fabrics</a>
+        </div>
+      </div>
     </div>
-    <div class="hero-glow"></div>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section class="section" id="about">
     <div class="container">
-      <div class="section-header">
-        <h2>Our Philosophy</h2>
-        <div class="gold-rule"></div>
-      </div>
-      <div class="about-content">
-        <p><strong>Étoffe Éclairé</strong> — meaning <em>"Enlightened Fabric"</em> — was born from a simple truth: when you understand what you wear, you choose better, care easier, and build a wardrobe that truly lasts.</p>
-        <p>We believe fabric knowledge should be as beautiful as the clothes themselves. Elegance isn't just about appearance — it's about appreciation, care, and conscious choices.</p>
+      <div class="grid-row">
+        <div class="col">
+          <span class="tag">About Us</span>
+          <h2>Enlightened <em>Fashion</em></h2>
+          <div class="gold-line"></div>
+        </div>
+        <div class="col">
+          <div class="card-box">
+            <p><strong>Étoffe Éclairé</strong> means "Enlightened Fabric." Our mission is to help you understand what you wear.</p>
+            <p>Too many beautiful clothes get ruined simply because the fabric was misunderstood. We bridge that gap — knowledge isn't a luxury, it's the foundation of great style.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Fabrics Section -->
-  <section class="section bg-luxury" id="fabrics">
-    <div class="container">
-      <div class="section-header">
-        <h2>The Fabric Collection</h2>
-        <div class="gold-rule"></div>
-        <p class="section-note">Hover to explore each fabric's unique character</p>
+  <!-- Channel -->
+  <section class="section bg-accent" id="channel">
+    <div class="container center-heading">
+      <span class="tag">Our Channel</span>
+      <h2>Join Us on <em>YouTube</em></h2>
+      <div class="gold-line center"></div>
+      <div class="card-box channel-box">
+        <div class="channel-icon">📺</div>
+        <h3>Étoffe Éclairé</h3>
+        <p>Your go-to resource for fabric guides, care tips, and smart shopping advice.</p>
+        <div class="topics">
+          <div class="topic">🧵 Fabric Guides</div>
+          <div class="topic">🧺 Care Tutorials</div>
+          <div class="topic">💡 Smart Shopping</div>
+        </div>
+        <a href="#" class="btn primary">Subscribe Now</a>
       </div>
-      
+    </div>
+  </section>
+
+  <!-- Fabrics -->
+  <section class="section" id="fabrics">
+    <div class="container">
+      <div class="center-heading">
+        <span class="tag">Fabric Guide</span>
+        <h2>Fabrics to <em>Know & Love</em></h2>
+        <div class="gold-line center"></div>
+      </div>
+
       <div class="fabrics-grid">
-        <div class="fabric-card">
-          <div class="fabric-icon">☁️</div>
-          <h3>Cotton</h3>
-          <span class="fabric-type">Natural Fiber</span>
-          <p class="fabric-desc">Soft, timeless, and endlessly versatile. Breathable comfort for every day.</p>
+        <div class="fab-card" onclick="toggleFabCard(this)">
+          <div class="fab-icon-box">☁️</div>
+          <div class="fab-header">
+            <h4>Cotton</h4>
+            <p>Natural • Breathable</p>
+            <span class="fab-expand">+</span>
+          </div>
+          <div class="fab-details">
+            <p><strong>Feel:</strong> Soft, gentle, comfortable all day</p>
+            <p><strong>Best for:</strong> Everyday wear, tropical climates ☀️</p>
+            <p><strong>Care:</strong> Machine wash warm, avoid high heat</p>
+          </div>
         </div>
 
-        <div class="fabric-card">
-          <div class="fabric-icon">👑</div>
-          <h3>Silk</h3>
-          <span class="fabric-type">Luxury Natural</span>
-          <p class="fabric-desc">Nature's masterpiece. Smooth, luminous, and eternally elegant.</p>
+        <div class="fab-card" onclick="toggleFabCard(this)">
+          <div class="fab-icon-box">👑</div>
+          <div class="fab-header">
+            <h4>Silk</h4>
+            <p>Luxury • Elegant</p>
+            <span class="fab-expand">+</span>
+          </div>
+          <div class="fab-details">
+            <p><strong>Feel:</strong> Smooth, lustrous, lightweight</p>
+            <p><strong>Best for:</strong> Blouses, scarves, special occasions</p>
+            <p><strong>Care:</strong> Hand wash cold or dry clean only</p>
+          </div>
         </div>
 
-        <div class="fabric-card">
-          <div class="fabric-icon">⚡</div>
-          <h3>Polyester</h3>
-          <span class="fabric-type">Synthetic Fiber</span>
-          <p class="fabric-desc">Durable beauty that travels beautifully. Resilient and always polished.</p>
+        <div class="fab-card" onclick="toggleFabCard(this)">
+          <div class="fab-icon-box">⚡</div>
+          <div class="fab-header">
+            <h4>Polyester</h4>
+            <p>Synthetic • Durable</p>
+            <span class="fab-expand">+</span>
+          </div>
+          <div class="fab-details">
+            <p><strong>Feel:</strong> Smooth, resilient, wrinkle-resistant</p>
+            <p><strong>Best for:</strong> Outerwear, activewear, travel ✈️</p>
+            <p><strong>Care:</strong> Machine wash warm, low heat only</p>
+          </div>
         </div>
 
-        <div class="fabric-card">
-          <div class="fabric-icon">🌿</div>
-          <h3>Linen</h3>
-          <span class="fabric-type">Natural Fiber</span>
-          <p class="fabric-desc">Effortless cool. Crisp, breathable, and beautifully imperfect.</p>
-        </div>
-
-        <div class="fabric-card">
-          <div class="fabric-icon">🐑</div>
-          <h3>Wool</h3>
-          <span class="fabric-type">Natural Fiber</span>
-          <p class="fabric-desc">Warmth that breathes. Timeless comfort, season after season.</p>
-        </div>
-
-        <div class="fabric-card">
-          <div class="fabric-icon">🌸</div>
-          <h3>Rayon</h3>
-          <span class="fabric-type">Semi-Synthetic</span>
-          <p class="fabric-desc">Silky drape at a gentle heart. Fluid elegance for feminine silhouettes.</p>
+        <div class="fab-card" onclick="toggleFabCard(this)">
+          <div class="fab-icon-box">🌿</div>
+          <div class="fab-header">
+            <h4>Linen</h4>
+            <p>Natural • Eco-Friendly</p>
+            <span class="fab-expand">+</span>
+          </div>
+          <div class="fab-details">
+            <p><strong>Feel:</strong> Textured, crisp, exceptionally cool</p>
+            <p><strong>Best for:</strong> Summer outfits, warm weather elegance</p>
+            <p><strong>Care:</strong> Wash cold — embrace the wrinkles!</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Care Section -->
-  <section class="section" id="care">
+  <!-- Care -->
+  <section class="section bg-accent" id="care">
     <div class="container">
-      <div class="section-header">
-        <h2>Care with Elegance</h2>
-        <div class="gold-rule"></div>
-        <p class="section-note">Treat your clothes with love, and they will love you back</p>
+      <div class="center-heading">
+        <span class="tag">Care Guide</span>
+        <h2>Care with <em>Grace</em></h2>
+        <div class="gold-line center"></div>
       </div>
-
-      <div class="care-container">
-        <div class="care-card do-card">
-          <div class="care-symbol">✦</div>
-          <h3>Always Cherish</h3>
+      <div class="care-grid">
+        <div class="care-card do">
+          <h4>✓ DO</h4>
           <ul>
-            <li>✓ Read the care label — it knows best</li>
-            <li>✓ Sort colors before every wash</li>
-            <li>✓ Wash delicates by hand in cool water</li>
-            <li>✓ Air dry whenever possible</li>
-            <li>✓ Fold or hang with intention</li>
+            <li>✓ Read care labels every time</li>
+            <li>✓ Sort lights from darks</li>
+            <li>✓ Air dry delicates flat</li>
+            <li>✓ Use gentle cycles</li>
           </ul>
         </div>
-
-        <div class="care-card dont-card">
-          <div class="care-symbol">✧</div>
-          <h3>Never Neglect</h3>
+        <div class="care-card dont">
+          <h4>✗ DON'T</h4>
           <ul>
-            <li>✗ Guess the water temperature</li>
-            <li>✗ Overcrowd your washing machine</li>
-            <li>✗ Wring or twist delicate fibers</li>
-            <li>✗ Expose silk & wool to direct sunlight</li>
-            <li>✗ Store anything while damp</li>
+            <li>✗ Assume everything is machine-safe</li>
+            <li>✗ Overcrowd the washer</li>
+            <li>✗ Use hot water on unknown fabrics</li>
+            <li>✗ Ignore the instructions</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container narrow">
+      <div class="center-heading">
+        <span class="tag">FAQ</span>
+        <h2>Frequently Asked <em>Questions</em></h2>
+        <div class="gold-line center"></div>
+      </div>
+      <div class="faq-wrap">
+        <div class="faq-item">
+          <button class="faq-q">How do I know fabric when shopping online? <span>+</span></button>
+          <div class="faq-a">
+            <p>Check the product description for "Material" or "Composition." If missing, ask the seller — trustworthy shops will tell you.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Why do clothes shrink? <span>+</span></button>
+          <div class="faq-a">
+            <p>Natural fibers shrink in hot water and high heat dryers. Wash cold and air dry to keep them safe!</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Expensive = better quality? <span>+</span></button>
+          <div class="faq-a">
+            <p>Not always. Material, stitching, and care matter most. A well-made cotton shirt can outlast a cheap designer piece.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -147,11 +216,12 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-content">
-      <h3>Étoffe <span>Éclairé</span></h3>
-      <p>Enlightened Fabric • Elegance woven with knowledge</p>
-      <div class="footer-line"></div>
-      <p class="footer-tag">Made with ♥ and an eye for beauty</p>
+    <div class="container">
+      <div class="footer-frame">
+        <h3 class="foot-logo">Étoffe <span>Éclairé</span></h3>
+        <p>"Thread of knowledge, style for life"</p>
+        <p class="copyright">&copy; 2026 Étoffe Éclairé. All Rights Reserved.</p>
+      </div>
     </div>
   </footer>
 
