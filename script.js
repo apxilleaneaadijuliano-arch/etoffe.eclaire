@@ -1,95 +1,91 @@
-// ==================================================
-// ÉTOFFE ÉCLAIRÉ — JavaScript
-// ==================================================
+// === SCROLL PROGRESS BAR ===
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = (scrollTop / scrollHeight) * 100;
+  document.getElementById('scrollProgress').style.width = progress + '%';
+});
 
-// === 1. SCROLL PROGRESS BAR ===
-function updateProgressBar() {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  const progressBar = document.getElementById('scrollProgress');
-  if (progressBar) progressBar.style.width = scrollPercent + '%';
-}
-window.addEventListener('scroll', updateProgressBar);
-
-// === 2. FADE-IN ANIMATION ON SCROLL ===
-const fadeElements = document.querySelectorAll('.fade-up');
-
-function checkScroll() {
-  fadeElements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.85) {
-      el.classList.add('visible');
+// === SCROLL REVEAL ANIMATION ===
+function revealOnScroll() {
+  const reveals = document.querySelectorAll('.reveal-element');
+  const windowHeight = window.innerHeight;
+  
+  reveals.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const revealPoint = 120;
+    
+    if (elementTop < windowHeight - revealPoint) {
+      element.classList.add('revealed');
     }
   });
 }
 
-window.addEventListener('scroll', checkScroll);
-window.addEventListener('load', checkScroll);
+// Run once on load + on scroll
+window.addEventListener('load', revealOnScroll);
+window.addEventListener('scroll', revealOnScroll);
 
-// === 3. FABRIC CARDS — Expand/Collapse ===
+// === FABRIC CARD TOGGLE ===
 function toggleFabCard(card) {
+  // Close other cards
   const allCards = document.querySelectorAll('.fab-card');
   allCards.forEach(c => {
     if (c !== card) c.classList.remove('open');
   });
+  // Toggle current card
   card.classList.toggle('open');
 }
 
-// === 4. FAQ — Toggle Answers ===
-function setupFAQ() {
-  const faqQuestions = document.querySelectorAll('.faq-q');
-  
-  faqQuestions.forEach(q => {
-    q.addEventListener('click', function() {
-      const answer = this.nextElementSibling;
-      const icon = this.querySelector('span');
-      
-      // Close other FAQs
-      faqQuestions.forEach(otherQ => {
-        if (otherQ !== q) {
-          otherQ.classList.remove('active');
-          otherQ.nextElementSibling.style.maxHeight = null;
-          otherQ.querySelector('span').textContent = '+';
-        }
-      });
-      
-      // Toggle current FAQ
-      this.classList.toggle('active');
-      if (this.classList.contains('active')) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        icon.textContent = '−';
-      } else {
-        answer.style.maxHeight = null;
-        icon.textContent = '+';
-      }
+// === FAQ ACCORDION ===
+const faqButtons = document.querySelectorAll('.faq-q');
+faqButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const faqItem = button.parentElement;
+    
+    // Close other FAQs
+    document.querySelectorAll('.faq-item').forEach(item => {
+      if (item !== faqItem) item.classList.remove('open');
     });
+    
+    // Toggle current FAQ
+    faqItem.classList.toggle('open');
   });
-}
-
-// === 5. MOBILE MENU ===
-function setupMobileMenu() {
-  const menuToggle = document.getElementById('menuToggle');
-  const navMenu = document.getElementById('navMenu');
-
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      navMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking a link
-    const navLinks = navMenu.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        navMenu.classList.remove('active');
-      });
-    });
-  }
-}
-
-// === 6. INITIALIZE EVERYTHING ===
-document.addEventListener('DOMContentLoaded', function() {
-  checkScroll();
-  setupFAQ();
-  setupMobileMenu();
 });
+
+// === MOBILE NAVIGATION TOGGLE ===
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+});
+
+// Close mobile menu when clicking a link
+const navLinks = navMenu.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+  });
+});
+
+// === SMOOTH SCROLL FOR ANCHOR LINKS ===
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    
+    if (targetElement) {
+      const navHeight = document.querySelector('.navbar').offsetHeight;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 30;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// === INITIAL REVEAL — in case elements are already in view on load ===
+setTimeout(revealOnScroll, 100);
