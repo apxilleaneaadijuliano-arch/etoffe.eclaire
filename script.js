@@ -1,12 +1,89 @@
-// ==================================================
-// ÉTOFFE ÉCLAIRÉ — JavaScript Interactive Features
-// 5 Elements: Fabric Cards • FAQ • Scroll Animation • Progress Bar • Mobile Menu
-// ==================================================
+// ==========================================
+// Étoffe Éclairé — JavaScript
+// 5 Features: Progress Bar, Fade-in, Carousel, Fabric Cards, Mobile Menu
+// ==========================================
 
-// 1️⃣ FABRIC CARDS — Click to Expand/Collapse
-function toggleCard(card) {
+// =========== 1. Progress Bar ===========
+function updateProgressBar() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  document.getElementById('progressBar').style.width = scrollPercent + '%';
+}
+window.addEventListener('scroll', updateProgressBar);
+
+// =========== 2. Fade-in Animation on Scroll ===========
+function setupFadeIn() {
+  const fadeElements = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  fadeElements.forEach(el => observer.observe(el));
+}
+
+// =========== 3. Image Carousel ===========
+let currentSlide = 0;
+const totalSlides = 4;
+
+function updateCarousel() {
+  const track = document.getElementById('carouselTrack');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.carousel-dot');
+
+  // Move track
+  track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+
+  // Update active slide
+  slides.forEach((slide, index) => {
+    slide.classList.toggle('active', index === currentSlide);
+  });
+
+  // Update dots
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlide);
+  });
+}
+
+function setupCarousel() {
+  // Create dots
+  const dotsContainer = document.getElementById('carouselDots');
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('span');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => {
+      currentSlide = i;
+      updateCarousel();
+    });
+    dotsContainer.appendChild(dot);
+  }
+
+  // Arrow buttons
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  });
+
+  // Auto-slide every 5 seconds
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  }, 5000);
+}
+
+// =========== 4. Fabric Cards Toggle ===========
+function toggleFabric(card) {
   // Close all other cards
-  const allCards = document.querySelectorAll('.fab-card');
+  const allCards = document.querySelectorAll('.fabric-card');
   allCards.forEach(c => {
     if (c !== card) c.classList.remove('open');
   });
@@ -14,69 +91,57 @@ function toggleCard(card) {
   card.classList.toggle('open');
 }
 
-// 2️⃣ FAQ SECTION — Click to Show/Hide Answers
-document.addEventListener('DOMContentLoaded', function() {
-  const faqQuestions = document.querySelectorAll('.faq-q');
-  
-  faqQuestions.forEach(question => {
-    question.addEventListener('click', function() {
-      const answer = this.nextElementSibling;
-      const icon = this.querySelector('span');
-      
-      // Close other FAQs
-      faqQuestions.forEach(q => {
-        if (q !== question) {
-          q.classList.remove('active');
-          q.nextElementSibling.style.maxHeight = null;
-          const otherIcon = q.querySelector('span');
-          if (otherIcon) otherIcon.textContent = '+';
+// FAQ Toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const faqToggles = document.querySelectorAll('.faq-toggle');
+  faqToggles.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('span');
+
+      // Close others
+      document.querySelectorAll('.faq-item').forEach(i => {
+        if (i !== item) {
+          i.classList.remove('open');
+          i.querySelector('.faq-content').style.maxHeight = null;
+          i.querySelector('span').textContent = '+';
         }
       });
-      
-      // Toggle current FAQ
-      this.classList.toggle('active');
-      if (this.classList.contains('active')) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
+
+      // Toggle current
+      item.classList.toggle('open');
+      if (item.classList.contains('open')) {
+        content.style.maxHeight = content.scrollHeight + 'px';
         icon.textContent = '−';
       } else {
-        answer.style.maxHeight = null;
+        content.style.maxHeight = null;
         icon.textContent = '+';
       }
     });
   });
 });
 
-// 3️⃣ SCROLL ANIMATIONS — Fade-in as you scroll down
-const fadeElements = document.querySelectorAll('.fade-up');
+// =========== 5. Mobile Menu Toggle ===========
+function setupMobileMenu() {
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
 
-function checkScroll() {
-  fadeElements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.85) {
-      el.classList.add('visible');
-    }
-  });
-}
-
-window.addEventListener('scroll', checkScroll);
-window.addEventListener('load', checkScroll);
-
-// 4️⃣ SCROLL PROGRESS BAR — Top loading indicator
-function updateProgressBar() {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  document.getElementById('scrollProgress').style.width = scrollPercent + '%';
-}
-
-window.addEventListener('scroll', updateProgressBar);
-
-// 5️⃣ MOBILE NAVIGATION — Toggle menu on small screens
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
-
-if (menuToggle) {
-  menuToggle.addEventListener('click', function() {
+  menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
   });
+
+  // Close menu when clicking a link
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+    });
+  });
 }
+
+// =========== Initialize Everything ===========
+document.addEventListener('DOMContentLoaded', () => {
+  setupFadeIn();
+  setupCarousel();
+  setupMobileMenu();
+});
