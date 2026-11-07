@@ -45,7 +45,7 @@ function setupFAQ() {
       const answer = this.nextElementSibling;
       const icon = this.querySelector('span');
       
-      // Close others
+      // Close other FAQs
       faqQuestions.forEach(otherQ => {
         if (otherQ !== q) {
           otherQ.classList.remove('active');
@@ -54,7 +54,7 @@ function setupFAQ() {
         }
       });
       
-      // Toggle current
+      // Toggle current FAQ
       this.classList.toggle('active');
       if (this.classList.contains('active')) {
         answer.style.maxHeight = answer.scrollHeight + 'px';
@@ -77,7 +77,7 @@ function setupMobileMenu() {
       navMenu.classList.toggle('active');
     });
 
-    // Close menu on link click
+    // Close menu when clicking a link
     const navLinks = navMenu.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
@@ -87,7 +87,7 @@ function setupMobileMenu() {
   }
 }
 
-// === 6. INITIALIZE ===
+// === 6. INITIALIZE EVERYTHING ===
 document.addEventListener('DOMContentLoaded', function() {
   checkScroll();
   setupFAQ();
