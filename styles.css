@@ -1,125 +1,82 @@
-/* ==================================================
-   ÉTOFFE ÉCLAIRÉ — Final Complete Design
-   ================================================== */
-
 :root {
-  /* Color Palette */
   --cream: #faf6ed;
-  --warm: #f5efe3;
+  --warm: #f3ede0;
   --ivory: #fffdf8;
-  --off-white: #fcf9f2;
-  
-  --gold: #bfa97a;
+  --gold: #b79f6c;
+  --gold-dark: #8a754c;
   --gold-light: #d4c29e;
-  --gold-medium: #a89263;
-  --gold-deep: #7a6845;
-  
-  --text-dark: #2c2924;
-  --text-medium: #5c574d;
-  --text-muted: #8a8273;
-  
-  --border-gold: rgba(191, 169, 122, 0.35);
-  --border-soft: rgba(191, 169, 122, 0.15);
-  
+  --text: #332f28;
+  --text-muted: #7a7468;
+  --border: #d4c7b0;
+  --shadow: 0 4px 16px rgba(138, 117, 76, 0.08);
+  --shadow-hover: 0 6px 20px rgba(138, 117, 76, 0.12);
   --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  
-  --shadow-soft: 0 4px 20px rgba(122, 104, 69, 0.06);
-  --shadow-card: 0 8px 30px rgba(122, 104, 69, 0.10);
-  --shadow-gold: 0 6px 24px rgba(191, 169, 122, 0.22);
-  
-  --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-body: 'Inter', sans-serif;
 }
 
-/* ==================================================
-   CHIC CUSTOM SCROLLBAR
-   ================================================== */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--warm);
-  border-left: 1px solid var(--border-soft);
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--gold-deep), var(--gold));
-  border-radius: 5px;
-  border: 2px solid var(--warm);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--gold-medium), var(--gold-deep));
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--warm); border-left: 1px solid var(--border); }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--gold-dark), var(--gold)); border-radius: 5px; border: 2px solid var(--warm); }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--gold), var(--gold-dark)); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--text); line-height: 1.7; }
+h1, h2, h3, h4 { font-family: var(--font-display); }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* Progress Bar */
+.progress-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: var(--warm); z-index: 999; }
+.progress-bar { height: 4px; background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light)); width: 0%; transition: width 0.12s ease; }
+
+/* Fade Animation */
+.fade-up { opacity: 0; transform: translateY(25px); transition: all 0.7s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* Section Base */
+.section { padding: 70px 25px; border-bottom: 1px solid var(--border); }
+.bg-warm { background: var(--warm); }
+.container { max-width: 1000px; margin: 0 auto; }
+.container.narrow { max-width: 700px; }
+.center-heading { text-align: center; }
+.tag { font-family: var(--font-display); font-style: italic; color: var(--gold-dark); font-size: 1.1rem; }
+h2 { font-size: 2.2rem; margin: 8px 0 12px; }
+h2 em { color: var(--gold-dark); font-style: normal; }
+.gold-line { width: 50px; height: 2px; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); margin: 10px 0; }
+.gold-line.center { margin: 10px auto; }
+
+/* Header & Navigation */
+.navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(250, 246, 237, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
+.nav-container { max-width: 1000px; margin: 0 auto; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; }
+.brand { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 2px; font-weight: 600; }
+.brand span { color: var(--gold-dark); }
+.nav-menu { display: flex; gap: 30px; }
+.nav-link { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); padding: 4px 0; border-bottom: 1px solid transparent; transition: 0.25s; }
+.nav-link:hover { color: var(--gold-dark); border-bottom-color: var(--gold); }
+.menu-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+.menu-toggle span { width: 22px; height: 1px; background: var(--text); }
+@media (max-width: 768px) {
+  .menu-toggle { display: flex; }
+  .nav-menu { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--ivory); padding: 20px 25px; display: none; border-bottom: 1px solid var(--border); gap: 15px; }
+  .nav-menu.active { display: flex; }
 }
 
-/* ==================================================
-   BASE STYLES
-   ================================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Hero Section */
+.hero { padding: 130px 25px 80px; text-align: center; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%); }
+.hero-content h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 20px; line-height: 1.2; }
+.hero-content h1 em { color: var(--gold-dark); font-style: normal; }
+.hero-content > p { color: var(--text-muted); max-width: 600px; margin: 0 auto 35px; font-size: 1.05rem; }
+.pretitle { font-family: var(--font-display); font-style: italic; color: var(--gold-dark); margin-bottom: 15px; font-size: 1.1rem; }
+.hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+.btn { padding: 12px 30px; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px; border: none; cursor: pointer; transition: 0.25s; font-weight: 500; }
+.btn.primary { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); color: white; }
+.btn.primary:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(138, 117, 76, 0.25); }
+.btn.secondary { background: transparent; color: var(--gold-dark); border: 1px solid var(--gold); }
+.btn.secondary:hover { background: var(--gold); color: white; }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--text-dark);
-  line-height: 1.7;
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  font-weight: 500;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-/* ==================================================
-   PROGRESS BAR
-   ================================================== */
-.progress-wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  z-index: 999;
-  background: var(--warm);
-}
-.progress-bar {
-  height: 4px;
-  background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-light));
-  width: 0%;
-  transition: width 0.12s ease;
-}
-
-/* ==================================================
-   SECTION DIVIDER
-   ================================================== */
-.section-bordered {
-  border-bottom: 1px solid var(--border-gold);
-}
-
-.gold-divider {
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gold-deep), var(--gold));
-  margin: 16px 0 0;
-}
-.gold-divider.center {
-  margin: 16px auto 0;
-}
-
-/* ==================================================
-   FADE-IN ANIMATION
-   ==================================================
+/* About Section */
+.grid-row { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: start; }
+@media (max-width: 768px) { .grid-row { grid-template-columns: 1fr; } }
+.card-box { background: var(--iv
