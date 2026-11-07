@@ -1,18 +1,16 @@
 // ==================================================
 // ÉTOFFE ÉCLAIRÉ — JavaScript Interactive Features
-// 5 Elements: Cards • FAQ • Scroll Animations • Progress Bar • Quiz
+// 5 Elements: Cards • FAQ • Scroll Animations • Progress Bar • Mobile Menu
 // ==================================================
 
 // ======================================
 // 1️⃣ EXPANDING FABRIC CARDS
 // ======================================
 function toggleCard(card) {
-  // Close all other cards first
   const allCards = document.querySelectorAll('.expand-card');
   allCards.forEach(c => {
     if (c !== card) c.classList.remove('open');
   });
-  // Toggle clicked card
   card.classList.toggle('open');
 }
 
@@ -27,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const answer = this.nextElementSibling;
       const icon = this.querySelector('.faq-icon');
       
-      // Close other FAQs
       faqQuestions.forEach(q => {
         if (q !== this) {
           q.classList.remove('active');
@@ -37,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // Toggle current FAQ
       this.classList.toggle('active');
       if (this.classList.contains('active')) {
         answer.style.maxHeight = answer.scrollHeight + 'px';
@@ -81,55 +77,10 @@ function updateProgressBar() {
 window.addEventListener('scroll', updateProgressBar);
 
 // ======================================
-// BONUS: MOBILE NAVIGATION TOGGLE
+// 5️⃣ MOBILE NAVIGATION TOGGLE
 // ======================================
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
 
 if (menuToggle) {
-  menuToggle.addEventListener('click', function() {
-    navMenu.classList.toggle('active');
-  });
-}
-
-// ======================================
-// 5️⃣ INTERACTIVE QUIZ
-// ======================================
-let answered = false;
-
-function selectAnswer(choice) {
-  if (answered) return;
-  answered = true;
-  
-  const feedback = document.getElementById('quizFeedback');
-  const emoji = document.getElementById('feedbackEmoji');
-  const text = document.getElementById('feedbackText');
-  const buttons = document.querySelectorAll('.quiz-option');
-  
-  // Disable all buttons
-  buttons.forEach(btn => btn.disabled = true);
-  
-  if (choice === 1) {
-    buttons[1].classList.add('correct');
-    emoji.textContent = '🎉';
-    text.textContent = 'Absolutely right! Silk & Wool love cold water — hot water will shrink them! 💡';
-    feedback.style.background = '#edf7f0';
-  } else {
-    buttons[choice].classList.add('wrong');
-    buttons[1].classList.add('correct');
-    emoji.textContent = '💡';
-    text.textContent = 'Not quite! The answer is B — Silk & Wool. Always wash them in cold water to keep them safe! ✨';
-    feedback.style.background = '#fff8e8';
-  }
-  
-  feedback.classList.add('show');
-}
-
-function resetQuiz() {
-  answered = false;
-  document.getElementById('quizFeedback').classList.remove('show');
-  document.querySelectorAll('.quiz-option').forEach(btn => {
-    btn.disabled = false;
-    btn.classList.remove('correct', 'wrong');
-  });
-}
+  menuToggle.addEventListener('click', function
