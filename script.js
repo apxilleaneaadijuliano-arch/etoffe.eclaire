@@ -1,65 +1,84 @@
 // ==========================================
-// ÉTOFFE ÉCLAIRÉ — Elegant & Light Script
+// 4 JAVASCRIPT INTERACTIVE FEATURES
 // ==========================================
 
-// 1. Smooth Scrolling ✨
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const target = document.querySelector(targetId);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
+// === 1. SCROLL ANIMATIONS — Sections fade in as you scroll ===
+const revealSections = document.querySelectorAll('.reveal-section');
 
-// 2. Active Nav Highlight ✨
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
-
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    const top = section.offsetTop;
-    if (window.pageYOffset >= top - 180) {
-      current = section.getAttribute('id');
-    }
-  });
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
-  });
-});
-
-// 3. Fade-in Cards on Scroll ✨
-const observer = new IntersectionObserver((entries) => {
+const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.15 });
 
-document.querySelectorAll('.fabric-card, .care-card').forEach(card => {
-  observer.observe(card);
+revealSections.forEach(section => {
+  scrollObserver.observe(section);
 });
 
-// 4. Golden Scroll Progress Bar ✨
-const progress = document.createElement('div');
-progress.style.cssText = `
-  position: fixed; top: 0; left: 0; height: 2px;
-  background: linear-gradient(90deg, #E8D08C, #D4AF37, #B8922F);
-  z-index: 9999; width: 0%;
-`;
-document.body.appendChild(progress);
+// === 2. EXPANDING CARDS — Click to see fabric details ===
+function toggleCard(card) {
+  // Close any other open card (optional — keeps it clean)
+  const allCards = document.querySelectorAll('.expandable-card');
+  allCards.forEach(c => {
+    if (c !== card) c.classList.remove('expanded');
+  });
+  // Toggle current card
+  card.classList.toggle('expanded');
+}
+
+// === 3. FAQ COLLAPSE SECTIONS — Click to open/close answers ===
+function toggleFAQ(button) {
+  const faqItem = button.parentElement;
+  // Close other FAQs
+  const allFAQs = document.querySelectorAll('.faq-item');
+  allFAQs.forEach(item => {
+    if (item !== faqItem) item.classList.remove('expanded');
+  });
+  // Toggle current FAQ
+  faqItem.classList.toggle('expanded');
+}
+
+// === 4. ACTIVE NAVIGATION HIGHLIGHT — Shows which section you're on ===
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-links a');
+const navbar = document.getElementById('navbar');
 
 window.addEventListener('scroll', () => {
-  const percent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-  progress.style.width = percent + '%';
+  // Navbar style change on scroll
+  if (window.scrollY > 20) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+
+  // Update active link
+  let currentSection = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      currentSection = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${currentSection}`) {
+      link.classList.add('active');
+    }
+  });
 });
 
-// 5. Welcome ✨
-console.log('✨ Étoffe Éclairé — Enlightened Fabric ✨');
+// Smooth scrolling for nav links
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+console.log('✨ Étoffe Éclairé — Thread of Knowledge, Style for Life ✨');
